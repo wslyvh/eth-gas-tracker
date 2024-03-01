@@ -2,10 +2,18 @@ import { NextResponse } from "next/server";
 import { createPublicClient, formatGwei, http, parseAbi } from "viem";
 import { mainnet } from "viem/chains";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 12;
+
 export async function GET() {
+  console.log("GET /gas");
+
   const client = createPublicClient({
     chain: mainnet,
-    transport: http(undefined, { batch: true }),
+    transport: http(
+      `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      { batch: true }
+    ),
   });
 
   try {
@@ -20,7 +28,7 @@ export async function GET() {
         .then((res) => Math.round((Number(res) / 1e8) * 100) / 100),
     ]);
 
-    console.log('Latest Gas', block.number)
+    console.log("Gas from block #", block.number);
     return NextResponse.json({
       data: {
         blockNr: String(block.number),

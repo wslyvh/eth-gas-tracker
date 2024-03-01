@@ -1,4 +1,4 @@
-export interface LatestGas { 
+export interface LatestGas {
   blockNr: string;
   timestamp: number;
   ethPrice: number;
@@ -10,6 +10,7 @@ export interface LatestGas {
 }
 
 export async function fetchLatestGas(): Promise<LatestGas> {
-  const response = await fetch("/api/latest");
-  return response.json().then((res) => res.data); 
+  console.log("Fetching latest gas..");
+  const response = await fetch("/api/gas", { next: { revalidate: 12 } });
+  return response.json().then((res) => res.data);
 }
