@@ -16,15 +16,9 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <header>
-        <h1>Ethereum Gastracker</h1>
-      </header>
-
-      <main>
+      <main className='flex h-screen justify-center items-center'>
         <Latest />
       </main>
-
-      <footer>https://github.com/wslyvh/eth-gas-tracker/</footer>
     </HydrationBoundary>
   );
 }
