@@ -46,7 +46,7 @@ export function Latest() {
         <div className="flex justify-between">
           <div className='flex flex-col'>
             <span className="text-2xl">Block # {data.blockNr}</span>
-            <span className='text-sm text-slate-400'>{dayjs.unix(data.timestamp).format("MMM DD · HH:mm:ss")} UTC</span>
+            <span className='text-sm text-slate-400'>{data.transactionCount} transactions</span>
           </div>
           <div className='flex flex-col align-right text-right'>
             <span className="text-2xl">{data.utilization}%</span>
@@ -54,7 +54,9 @@ export function Latest() {
           </div>
         </div>
 
-        <progress className="progress progress-primary mt-4" value="40" max="100"></progress>
+        <progress className="progress progress-primary mt-4" value={`${data.utilization}`} max="100"></progress>
+
+        <span className='text-sm text-slate-600 mt-2'>{dayjs.unix(data.timestamp).format("MMM DD · HH:mm:ss")} UTC</span>
       </div>
     </div>
   );
