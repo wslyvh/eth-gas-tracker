@@ -14,6 +14,6 @@ export interface LatestGas {
 
 export async function fetchLatestGas(): Promise<LatestGas> {
   console.log("Fetching latest gas..");
-  const response = await fetch("/api/gas", { next: { revalidate: 12 } });
+  const response = await fetch("/api/gas/latest", { next: { revalidate: 12 } });
   return response.json().then((res) => res.data);
 }

@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 12;
 
 export async function GET() {
-  console.log("GET /gas");
+  console.log("GET /latest");
 
   const client = createPublicClient({
     chain: mainnet,
