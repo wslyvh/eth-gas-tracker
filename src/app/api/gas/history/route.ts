@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createPublicClient, http } from "viem";
+import { createPublicClient, formatGwei, http } from "viem";
 import { mainnet } from "viem/chains";
 
 export const dynamic = "force-dynamic";
@@ -17,7 +17,7 @@ export async function GET() {
   });
 
   try {
-    const historicalBlocks = 24;
+    const historicalBlocks = 50;
     const feeHistory = await client
       .getFeeHistory({ blockCount: historicalBlocks, rewardPercentiles: [30] })
       .then((res) => {
@@ -27,7 +27,7 @@ export async function GET() {
         while (blockNr < res.oldestBlock + BigInt(historicalBlocks)) {
           blocks.push({
             blockNr: blockNr.toString(),
-            baseFee: Number(res.baseFeePerGas[index]),
+            baseFee: Math.round(Number(formatGwei(res.baseFeePerGas[index])) * 100) / 100, // Number(res.baseFeePerGas[index]),
             utilization: Math.round((Number(res.gasUsedRatio[index])) * 100),
           });
 
@@ -39,7 +39,10 @@ export async function GET() {
       });
 
     return NextResponse.json({
-      data: feeHistory,
+      data: {
+        blocks: feeHistory,
+        lastUpdate: Date.now(),
+      },
     });
   } catch (e) {
     return NextResponse.json(e, { status: 400 });

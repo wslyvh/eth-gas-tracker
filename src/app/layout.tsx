@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PropsWithChildren } from "react";
-import "@/assets/globals.css";
 import DataProvider from "./providers/DataProvider";
+import "@/assets/globals.css";
 
 export const metadata: Metadata = {
   title: "Ethereum Gas Tracker",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en">
-      <body>
+      <body className="hv-100 bg-neutral-100 w-screen h-screen h-full p-8 pt-4">
         <DataProvider>{props.children}</DataProvider>
       </body>
     </html>
