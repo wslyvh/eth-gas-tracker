@@ -12,9 +12,9 @@ export function LatestDataWrapper() {
     queryFn: fetchLatestGas,
   });
 
-  if (isLoading) return <>Loading...</>;
+  if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>
 
-  if (!data) return <>No data</>;
+  if (!data) return null;
 
   return <Latest data={data} />
 }
