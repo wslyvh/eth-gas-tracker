@@ -15,6 +15,9 @@ app.frame('/', async (context) => {
   const data = await fetchLatestGas(url);
 
   return context.res({
+    headers:{
+      'Cache-Control': 's-maxage=12, stale-while-revalidate',
+    },
     image: (
       <div tw="flex flex-col w-full h-full bg-white p-8 text-xl">
         <h1 tw='text-3xl'>
