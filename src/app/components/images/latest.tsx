@@ -6,20 +6,20 @@ import dayjs from "dayjs";
 export function LatestImageResponse(data: GasInfo) {
   return new ImageResponse(
     (
-      <div tw="flex flex-col w-full h-full bg-white p-8">
-        <h1>
+      <div tw="flex flex-col w-full h-full bg-white p-8 text-xl">
+        <h1 tw='text-3xl'>
           <span tw="pr-4">{SITE_EMOJI}</span> {SITE_NAME}
         </h1>
 
         <div tw="flex relative grow w-auto h-auto justify-center my-8">
-          <div tw="flex flex-col items-center justify-center rounded-full bg-slate-100 h-60 w-60">
-            <span tw="text-6xl">{data.nextFee}</span>
-            <span tw="text-slate-500 mt-2">Gwei</span>
+          <div tw="flex flex-col items-center justify-center rounded-full bg-slate-100 h-72 w-72">
+            <span tw="text-8xl">{data.nextFee}</span>
+            <span tw="text-2xl text-slate-500 mt-2">Gwei</span>
           </div>
 
           <div tw="flex flex-col mt-8">
             {data.difference >= 0 && (
-              <span tw="text-xs py-1 px-2 rounded-xl bg-green-500 text-green-900">
+              <span tw="text-sm py-1 px-2 rounded-xl bg-green-500 text-green-900">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 320 512"
@@ -34,7 +34,7 @@ export function LatestImageResponse(data: GasInfo) {
               </span>
             )}
             {data.difference < 0 && (
-              <span tw="text-xs py-1 px-2 rounded-xl bg-red-500 text-red-900">
+              <span tw="text-sm py-1 px-2 rounded-xl bg-red-500 text-red-900">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 320 512"
@@ -54,13 +54,13 @@ export function LatestImageResponse(data: GasInfo) {
         <div tw="flex flex-col">
           <div tw="flex justify-between">
             <div tw="flex flex-col">
-              <span tw="text-3xl">Block # {data.blockNr}</span>
+              <span tw="text-4xl">Block # {data.blockNr}</span>
               <span tw="text-slate-400">
                 {data.transactionCount} transactions
               </span>
             </div>
             <div tw="flex flex-col">
-              <span tw="text-3xl">{data.utilization}%</span>
+              <span tw="text-4xl">{data.utilization}%</span>
               <span tw="text-slate-400">
                 {Math.round(data.gasUsed / 1e6)}M /{" "}
                 {Math.round(data.gasLimit / 1e6)}M
@@ -74,7 +74,7 @@ export function LatestImageResponse(data: GasInfo) {
             ></span>
           </div>
 
-          <span tw="text-sm text-slate-600 mt-2">
+          <span tw="text-slate-600 mt-2">
             {dayjs.unix(data.timestamp).format("MMM DD · HH:mm:ss")} UTC
           </span>
         </div>
