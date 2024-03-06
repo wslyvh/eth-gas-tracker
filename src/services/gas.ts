@@ -19,13 +19,13 @@ export interface GasInfo {
 }
 
 export async function fetchLatestGas(baseUri: string = ''): Promise<GasInfo> {
-  console.log("Fetching latest gas..");
+  console.log("Fetching latest gas..", baseUri);
   const response = await fetch(`${baseUri}/api/gas/latest`, { next: { revalidate: 12 } });
   return response.json().then((res) => res.data);
 }
 
 export async function fetchGasHistory(baseUri: string = ''): Promise<GasBlock[]> {
-  console.log("Fetching gas history..");
+  console.log("Fetching gas history..", baseUri);
   const response = await fetch(`${baseUri}/api/gas/history`, { next: { revalidate: 12 } });
   return response.json().then((res) => res.data.blocks);
 }

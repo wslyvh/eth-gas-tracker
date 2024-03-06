@@ -1,4 +1,4 @@
-import { SITE_NAME } from "./utils/site";
+import { SITE_NAME, SITE_URL } from "./utils/site";
 import { fetchLatestGas } from "@/services/gas";
 import { LatestImageResponse } from "./components/images/latest";
 
@@ -11,7 +11,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const url = process.env.VERCEL_URL || "http://localhost:3000";
+  const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
   const data = await fetchLatestGas(url);
 
   if (!data) return null;
