@@ -16,7 +16,7 @@ app.frame('/', async (context) => {
 
   return context.res({
     headers:{
-      'Cache-Control': 's-maxage=12, stale-while-revalidate',
+      'Cache-Control': `no-store, max-age=12`,
     },
     image: (
       <div tw="flex flex-col w-full h-full bg-white p-8 text-xl">
