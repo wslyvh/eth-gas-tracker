@@ -6,7 +6,6 @@ import { Button, Frog } from 'frog'
 import { handle } from 'frog/next'
 
 const app = new Frog({
-  assetsPath: '/',
   basePath: '/api',
   verify: false,
 })

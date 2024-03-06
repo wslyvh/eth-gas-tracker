@@ -11,7 +11,7 @@ import { getFrameMetadata } from "frog/next";
 
 export async function generateMetadata() {
   const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
-  const frameTags = await getFrameMetadata(url)
+  const frameTags = await getFrameMetadata(`${url}/api`)
   
   return {
     applicationName: SITE_NAME,
