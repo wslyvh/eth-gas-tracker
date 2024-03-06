@@ -1,6 +1,7 @@
 import { SITE_NAME, SITE_URL } from "./utils/site";
 import { fetchLatestGas } from "@/services/gas";
 import { LatestImageResponse } from "./components/images/latest";
+import { ImageResponse } from "next/og";
 
 // Route segment config
 export const runtime = "edge";
@@ -16,5 +17,7 @@ export default async function Image() {
 
   if (!data) return null;
 
-  return LatestImageResponse(data);
+  return new ImageResponse(
+    LatestImageResponse(data),
+  )
 }

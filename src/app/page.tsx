@@ -7,8 +7,13 @@ import {
 import { LatestDataWrapper } from "./components/latest/latest";
 import { HistoryDataWrapper } from "./components/history";
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, SOCIAL_TWITTER } from "./utils/site";
+import { getFrameMetadata } from "frog/next";
 
 export async function generateMetadata() {
+  const frameTags = await getFrameMetadata(
+    `${process.env.VERCEL_URL || 'http://localhost:3000'}/api`,
+  )
+  
   return {
     applicationName: SITE_NAME,
     title: SITE_NAME,
@@ -29,6 +34,7 @@ export async function generateMetadata() {
       description: SITE_DESCRIPTION,
       images: '/opengraph-image',
     },
+    other: frameTags,
   };
 }
 

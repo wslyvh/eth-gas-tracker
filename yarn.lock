@@ -1857,10 +1857,10 @@ fraction.js@^4.3.7:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
-frog@^0.2.13:
-  version "0.2.13"
-  resolved "https://registry.yarnpkg.com/frog/-/frog-0.2.13.tgz#936e65d79b04d0adaabdb81d1cc0b257e670cb1e"
-  integrity sha512-FEYqtCIvGsLJxSVq/mrAdID8wSeS64WLljG51CcEJpafxkbMSN2WHpzYp3BPwHKT0pSQDTqrPd7Z2XsoDoHwJA==
+frog@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/frog/-/frog-0.4.2.tgz#e4132b3c28c595781fecda6d6a7cb4969d4a2c5c"
+  integrity sha512-4k9KsIzbqokGSHUN4B6ZBHHRRMIOCeFA2HE9r4xEGqBVa/oYtnSgC+vB1S2jmrmlRkzpxs6Z0BTIkUTBrPP64g==
   dependencies:
     "@bufbuild/protobuf" "^1.7.2"
     "@farcaster/core" "^0.13.7"
@@ -1874,7 +1874,6 @@ frog@^0.2.13:
     fs-extra "^11.2.0"
     happy-dom "^13.3.8"
     hono-og "0.0.17"
-    immer "^10.0.3"
     jose "^5.2.2"
     path-browserify "^1.0.1"
     qrcode "^1.5.3"
@@ -2120,20 +2119,15 @@ hono-og@0.0.17:
     "@wevm/vercel-og" "~0.6.11"
     workers-og "~0.0.20"
 
-hono@^4.0.9:
-  version "4.0.9"
-  resolved "https://registry.yarnpkg.com/hono/-/hono-4.0.9.tgz#36cd003bd42c2abc5f8570b90fa7944825a8ab86"
-  integrity sha512-XkFx6y6jAl08bGmoy53oGtHl8eHUixvmBulfcghrSySoJD3cW4UfFUa7JDGLOsIeJUv/a9d2pBFQUX7rzRnjvA==
+hono@^4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-4.0.10.tgz#61aa36d6645723a5bc8ee4930f30de590440abce"
+  integrity sha512-sq0RFAC3Ij+bkhZu90EGAQnVI1EhohRsjo9BU+BjXLbC71GSy41JjsFqCeg8MRpO2Gdu0A4MXF5licO89tn/rw==
 
 ignore@^5.2.0:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.3.1.tgz#5073e554cd42c5b33b394375f538b8593e34d4ef"
   integrity sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==
-
-immer@^10.0.3:
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-10.0.3.tgz#a8de42065e964aa3edf6afc282dfc7f7f34ae3c9"
-  integrity sha512-pwupu3eWfouuaowscykeckFmVTpqbzW+rXFCX8rQLkZzM9ftBmU/++Ra+o+L27mz03zJTlyV4UUr+fdKNffo4A==
 
 import-fresh@^3.2.1:
   version "3.3.0"
@@ -3341,6 +3335,7 @@ streamsearch@^1.1.0:
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0, string-width@^4.2.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
