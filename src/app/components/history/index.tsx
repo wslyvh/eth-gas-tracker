@@ -9,7 +9,7 @@ export function HistoryDataWrapper() {
     queryKey: ["gas", "history"],
     refetchInterval: 12 * 1000,
     refetchOnWindowFocus: true,
-    queryFn: fetchGasHistory,
+    queryFn: () => fetchGasHistory(),
   });
 
   if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>

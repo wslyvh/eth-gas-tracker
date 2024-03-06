@@ -6,18 +6,43 @@ import {
 } from "@tanstack/react-query";
 import { LatestDataWrapper } from "./components/latest/latest";
 import { HistoryDataWrapper } from "./components/history";
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, SOCIAL_TWITTER } from "./utils/site";
+
+export async function generateMetadata() {
+  return {
+    applicationName: SITE_NAME,
+    title: SITE_NAME,
+    metadataBase: new URL(SITE_URL),
+    description: SITE_DESCRIPTION,
+    openGraph: {
+      type: 'website',
+      title: SITE_NAME,
+      siteName: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      images: '/opengraph-image',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: SOCIAL_TWITTER,
+      title: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      images: '/opengraph-image',
+    },
+  };
+}
 
 export default async function Home() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ["gas", "latest"],
-    queryFn: fetchLatestGas,
+    queryFn: () => fetchLatestGas(),
   });
 
   await queryClient.prefetchQuery({
     queryKey: ["gas", "history"],
-    queryFn: fetchGasHistory,
+    queryFn: () => fetchGasHistory(),
   });
 
   return (

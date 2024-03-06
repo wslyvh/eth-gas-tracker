@@ -18,15 +18,15 @@ export interface GasInfo {
   lastUpdate: number;
 }
 
-export async function fetchLatestGas(): Promise<GasInfo> {
+export async function fetchLatestGas(baseUri: string = ''): Promise<GasInfo> {
   console.log("Fetching latest gas..");
-  const response = await fetch("/api/gas/latest", { next: { revalidate: 12 } });
+  const response = await fetch(`${baseUri}/api/gas/latest`, { next: { revalidate: 12 } });
   return response.json().then((res) => res.data);
 }
 
-export async function fetchGasHistory(): Promise<GasBlock[]> {
+export async function fetchGasHistory(baseUri: string = ''): Promise<GasBlock[]> {
   console.log("Fetching gas history..");
-  const response = await fetch("/api/gas/history", { next: { revalidate: 12 } });
+  const response = await fetch(`${baseUri}/api/gas/history`, { next: { revalidate: 12 } });
   return response.json().then((res) => res.data.blocks);
 }
 
