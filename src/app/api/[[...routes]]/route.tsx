@@ -68,7 +68,7 @@ app.frame('/', async (context) => {
       </div>
     ),
     intents: [
-      <Button value="">Refresh</Button>,
+      <Button value="">Latest</Button>,
       <Button.Link href="https://www.ethgastracker.com/">More info</Button.Link>,
     ],
   })
