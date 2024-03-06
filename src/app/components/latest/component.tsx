@@ -1,11 +1,16 @@
+import { SITE_NAME } from "@/app/utils/site";
 import { GasInfo } from "@/services/gas";
 import dayjs from "dayjs";
 
 interface Props {
-  data: GasInfo
+  data: GasInfo;
 }
 
 export function Latest({ data }: Props) {
+  if (document) {
+    document.title = `${data.baseFee} Gwei | ${SITE_NAME}`;
+  }
+
   return (
     <div className="flex flex-col bg-white rounded-xl w-full max-w-[1200px] aspect-[1.91/1] p-4 md:p-12">
       <div className="flex justify-between">

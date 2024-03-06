@@ -15,6 +15,7 @@
     "frog": "^0.2.13",
     "hono": "^4.0.9",
     "next": "14.1.0",
+    "next-plausible": "^3.12.0",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
