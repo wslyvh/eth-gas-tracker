@@ -4,9 +4,10 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-import { LatestDataWrapper } from "./components/latest/latest";
+import { LatestDataWrapper } from "./components/latest";
 import { HistoryDataWrapper } from "./components/history";
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, SOCIAL_TWITTER } from "./utils/site";
+import { TransactionCostsDataWrapper } from "./components/costs";
 import { getFrameMetadata } from "frog/next";
 
 export async function generateMetadata() {
@@ -56,6 +57,8 @@ export default async function Home() {
         <h1 className="text-3xl my-4">⛽ Ethereum Gas Tracker</h1>
         
         <LatestDataWrapper />
+
+        <TransactionCostsDataWrapper />
 
         <HistoryDataWrapper />
       </main>
