@@ -10,9 +10,8 @@ import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, SOCIAL_TWITTER } from "./utils/s
 import { getFrameMetadata } from "frog/next";
 
 export async function generateMetadata() {
-  const frameTags = await getFrameMetadata(
-    `${process.env.VERCEL_URL || 'http://localhost:3000'}/api`,
-  )
+  const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
+  const frameTags = await getFrameMetadata(url)
   
   return {
     applicationName: SITE_NAME,

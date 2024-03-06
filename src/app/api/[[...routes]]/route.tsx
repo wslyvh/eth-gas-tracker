@@ -1,5 +1,4 @@
 /** @jsxImportSource frog/jsx */
-import { LatestImageResponse } from '@/app/components/images/latest'
 import { SITE_EMOJI, SITE_NAME, SITE_URL } from '@/app/utils/site'
 import { fetchLatestGas } from '@/services/gas'
 import dayjs from 'dayjs'
