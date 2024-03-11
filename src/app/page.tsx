@@ -1,4 +1,4 @@
-import { fetchGasHistory, fetchLatestGas } from "@/services/gas";
+import { fetchGasAverages, fetchGasHistory, fetchLatestGas } from "@/services/gas";
 import {
   HydrationBoundary,
   QueryClient,
@@ -9,6 +9,7 @@ import { HistoryDataWrapper } from "./components/history";
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, SOCIAL_TWITTER } from "./utils/site";
 import { TransactionCostsDataWrapper } from "./components/costs";
 import { getFrameMetadata } from "frog/next";
+import { AveragesDataWrapper } from "./components/average";
 
 export async function generateMetadata() {
   const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
@@ -51,6 +52,11 @@ export default async function Home() {
     queryFn: () => fetchGasHistory(),
   });
 
+  await queryClient.prefetchQuery({
+    queryKey: ["gas", "average"],
+    queryFn: () => fetchGasAverages(),
+  });
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <main className="flex flex-col items-center gap-4">
@@ -60,7 +66,9 @@ export default async function Home() {
 
         <TransactionCostsDataWrapper />
 
-        <HistoryDataWrapper />
+        <HistoryDataWrapper /> 
+
+        <AveragesDataWrapper />
       </main>
     </HydrationBoundary>
   );

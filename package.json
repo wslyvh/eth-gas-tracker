@@ -9,10 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.7",
     "@tanstack/react-query": "^5.24.1",
     "apexcharts": "^3.46.0",
     "dayjs": "^1.11.10",
-    "frog": "^0.4.2",
+    "frog": "latest",
     "hono": "^4.0.10",
     "next": "14.1.0",
     "next-plausible": "^3.12.0",

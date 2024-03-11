@@ -16,5 +16,5 @@ export function HistoryDataWrapper() {
 
   if (!data) return null;
 
-  return <History data={data} />
+  return <History data={data.data} lastUpdate={data.lastUpdate} />
 }

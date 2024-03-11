@@ -22,7 +22,7 @@ export function TransactionCosts({ data }: Props) {
   return (
     <div className="flex flex-col bg-white rounded-xl w-full max-w-[1200px] aspect-[1.91/1] p-4 md:p-12">
       <div className="flex justify-between">
-        <h2 className="text-3xl">Transaction Costs</h2>
+        <h2 className="text-3xl">Transaction Costs  <span className='text-xs'>Updated {dayjs(data.lastUpdate).format("HH:mm:ss")} UTC</span></h2>
       </div>
 
       <div className="flex relative grow w-auto h-auto overflow-x-auto my-4">
@@ -46,12 +46,6 @@ export function TransactionCosts({ data }: Props) {
             })}
           </tbody>
         </table>
-      </div>
-
-      <div className="flex flex-col">
-        <span className="text-sm text-slate-600 mt-2">
-          {dayjs.unix(data.timestamp).format("MMM DD · HH:mm:ss")} UTC
-        </span>
       </div>
     </div>
   );
