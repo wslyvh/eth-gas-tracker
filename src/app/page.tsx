@@ -10,6 +10,7 @@ import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, SOCIAL_TWITTER } from "./utils/s
 import { TransactionCostsDataWrapper } from "./components/costs";
 import { getFrameMetadata } from "frog/next";
 import { AveragesDataWrapper } from "./components/average";
+import Link from "next/link";
 
 export async function generateMetadata() {
   const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
@@ -69,6 +70,10 @@ export default async function Home() {
         <HistoryDataWrapper /> 
 
         <AveragesDataWrapper />
+
+        <div className='text-xs pb-4'>
+          <Link href='https://github.com/wslyvh/eth-gas-tracker/'>Github</Link>
+        </div>
       </main>
     </HydrationBoundary>
   );

@@ -6,11 +6,11 @@ import "@/assets/globals.css";
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-neutral-100">
       <head>
         <PlausibleProvider domain={SITE_DOMAIN} />
       </head>
-      <body className="hv-100 bg-neutral-100 w-screen h-screen h-full p-8 pt-4">
+      <body className="w-screen h-screen h-full p-8 pt-4">
         <DataProvider>{props.children}</DataProvider>
       </body>
     </html>
