@@ -3,16 +3,15 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-import { SITE_BLOB_DESCRIPTION, SITE_BLOB_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_URL, SOCIAL_TWITTER } from "../utils/site";
-import { getFrameMetadata } from "frog/next";
-import Link from "next/link";
+import { SITE_BLOB_DESCRIPTION, SITE_BLOB_NAME, SITE_URL, SOCIAL_TWITTER } from "../utils/site";
 import { fetchBlobHistory, fetchBlobStats } from "@/services/blobs";
 import { BlobStatsDataWrapper } from "../components/stats";
 import { BlobHistoryDataWrapper } from "../components/blobs";
+import Link from "next/link";
 
 export async function generateMetadata() {
-  const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
-  const frameTags = await getFrameMetadata(`${url}/api`)
+  // const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
+  // const frameTags = await getFrameMetadata(`${url}/api`)
 
   return {
     applicationName: SITE_BLOB_NAME,
@@ -34,7 +33,7 @@ export async function generateMetadata() {
       description: SITE_BLOB_DESCRIPTION,
       images: '/blobs/opengraph-image',
     },
-    other: frameTags,
+    // other: frameTags,
   };
 }
 
