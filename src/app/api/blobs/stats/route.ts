@@ -3,12 +3,29 @@ import dayjs from "dayjs";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 3600;
+export const revalidate = 12;
 
 export async function GET() {
   console.log("GET /info");
 
   try {
+
+    const res = await fetch(`${BLOBSCAN_BASE_URI}/api/stats/overall`)
+    const data = await res.json()
+    return NextResponse.json({
+      data: {
+        timePeriod: dayjs(data.blob.updatedAt).valueOf(),
+
+        totalBlobs: data.blob.totalBlobs,
+        totalBlobSize: data.blob.totalBlobSize,
+        avgBlobSize: data.blob.avgBlobSize,
+
+        avgBlobFee: data.block.avgBlobFee,
+        avgBlobGasPrice: Math.round(Number(data.block.avgBlobGasPrice) * 100) / 100,
+      },
+      lastUpdate: Date.now(),
+    });
+
     const [blobs, blocks] = await Promise.all([
       await fetch(`${BLOBSCAN_BASE_URI}/api/stats/blobs?timeFrame=1d`).then(res => res.json()),
       await fetch(`${BLOBSCAN_BASE_URI}/api/stats/blocks?timeFrame=1d`).then(res => res.json()),
@@ -29,6 +46,7 @@ export async function GET() {
       lastUpdate: Date.now(),
     });
   } catch (e) {
+    console.error(e)
     return NextResponse.json(e, { status: 400 });
   }
 }

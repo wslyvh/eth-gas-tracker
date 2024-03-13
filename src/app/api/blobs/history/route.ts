@@ -14,7 +14,7 @@ export async function GET() {
 
     return NextResponse.json({
       data: data.blocks.map((i: any) => {
-        const blobGasPrice = Math.round(Number(i.blobGasPrice / 1e9) * 100) / 100
+        const blobGasPrice = Math.round(Number(i.blobGasPrice) * 100) / 100
         return {
           blockNr: i.number,
           timestamp: i.timestamp,
@@ -30,6 +30,7 @@ export async function GET() {
       lastUpdate: Date.now(),
     });
   } catch (e) {
+    console.error(e)
     return NextResponse.json(e, { status: 400 });
   }
 }
