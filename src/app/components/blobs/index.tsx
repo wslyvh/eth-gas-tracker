@@ -13,7 +13,7 @@ export function BlobHistoryDataWrapper() {
 
   if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>
 
-  if (!data) return null;
+  if (!data || !data.data) return null;
 
   return <BlobHistory data={data.data} lastUpdate={data.lastUpdate}/>
 }
