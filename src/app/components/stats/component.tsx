@@ -1,3 +1,4 @@
+import { SITE_BLOB_NAME } from "@/app/utils/site";
 import { BlobStats } from "@/services/blobs";
 
 interface Props {
@@ -22,6 +23,10 @@ function toByteSize(bytes: number) {
 }
 
 export function BlobStats(props: Props) {
+  if (document && props.data.avgBlobGasPrice > 0) {
+    document.title = `${props.data.avgBlobGasPrice} Gwei | ${SITE_BLOB_NAME}`;
+  }
+
   return (
     <div className="stats stats-vertical w-full max-w-[1200px] md:stats-horizontal">
       <div className="stat">

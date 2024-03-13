@@ -11,6 +11,7 @@ export async function GET() {
     const historicalBlocks = 50;
     const res = await fetch(`${BLOBSCAN_BASE_URI}/api/blocks?ps=${historicalBlocks}`);
     const data = await res.json();
+
     return NextResponse.json({
       data: data.blocks.map((i: any) => {
         const blobGasPrice = Math.round(Number(i.blobGasPrice / 1e9) * 100) / 100

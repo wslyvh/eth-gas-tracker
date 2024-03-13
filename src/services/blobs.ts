@@ -28,7 +28,7 @@ export interface DataWrapper<T> {
 }
 
 export const BLOB_LIMIT = 6;
-export const BLOBSCAN_BASE_URI = 'https://api.sepolia.blobscan.com';
+export const BLOBSCAN_BASE_URI = 'https://api.blobscan.com';
 
 export async function fetchBlobStats(baseUri: string = ''): Promise<DataWrapper<BlobStats>> {
   console.log("Fetching latest blob stats..", baseUri);
