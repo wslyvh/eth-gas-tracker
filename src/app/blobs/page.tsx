@@ -25,14 +25,14 @@ export async function generateMetadata() {
       siteName: SITE_BLOB_NAME,
       description: SITE_BLOB_DESCRIPTION,
       url: SITE_URL,
-      images: '/opengraph-image',
+      images: '/blobs/opengraph-image',
     },
     twitter: {
       card: 'summary_large_image',
       site: SOCIAL_TWITTER,
       title: SITE_BLOB_NAME,
       description: SITE_BLOB_DESCRIPTION,
-      images: '/opengraph-image',
+      images: '/blobs/opengraph-image',
     },
     other: frameTags,
   };
