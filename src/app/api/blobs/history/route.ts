@@ -1,7 +1,7 @@
 import { BLOBSCAN_BASE_URI, BLOB_LIMIT } from "@/services/blobs";
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-static';
 export const revalidate = 12;
 
 export async function GET() {
@@ -9,12 +9,12 @@ export async function GET() {
 
   try {
     const historicalBlocks = 50;
-    const res = await fetch(`${BLOBSCAN_BASE_URI}/api/blocks?ps=${historicalBlocks}`);
+    const res = await fetch(`${BLOBSCAN_BASE_URI}/blocks?ps=${historicalBlocks}`);
     const data = await res.json();
 
     return NextResponse.json({
       data: data.blocks.map((i: any) => {
-        const blobGasPrice = Math.round(Number(i.blobGasPrice) * 100) / 100
+        const blobGasPrice = Math.round(Number(i.blobGasPrice / 1e9) * 100) / 100
         return {
           blockNr: i.number,
           timestamp: i.timestamp,

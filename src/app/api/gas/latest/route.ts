@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createPublicClient, formatGwei, http, parseAbi } from "viem";
 import { mainnet } from "viem/chains";
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-static';
 export const revalidate = 12;
 
 export async function GET() {
