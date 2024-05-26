@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && db:generate",
     "start": "next start",
     "db:generate": "prisma generate --schema=src/db/schema.prisma && prisma db push --schema src/db/schema.prisma",
+    "db:studio": "prisma studio --schema src/db/schema.prisma",
     "lint": "next lint"
   },
   "dependencies": {
