@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && db:generate",
+    "prebuild": "yarn db:generate",
+    "build": "next build",
     "start": "next start",
     "db:generate": "prisma generate --schema=src/db/schema.prisma && prisma db push --schema src/db/schema.prisma",
     "db:studio": "prisma studio --schema src/db/schema.prisma",
