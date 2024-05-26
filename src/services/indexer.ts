@@ -18,19 +18,17 @@ export async function Index(network: NETWORKS = "mainnet") {
   const client = CreatePublicClient(network);
 
   const currentBlock = await client.getBlockNumber();
-  console.log("Current block", currentBlock);
   const lastProcessedBlock = await db.blocks.findFirst({
     where: { network },
     orderBy: { blockNr: "desc" },
   });
-  console.log("Last processed block", lastProcessedBlock);
 
   const runUntil =
     lastProcessedBlock?.blockNr || currentBlock - BigInt(DEFAULT_LIMIT);
   console.log(`[${network}] Process blocks # ${runUntil} / ${currentBlock}`);
 
-  console.log("Run Until", runUntil);
   let blockNr = currentBlock;
+  let records = [];
   while (blockNr >= runUntil) {
     console.log(`[${network}] # ${blockNr}`);
 
@@ -40,7 +38,7 @@ export async function Index(network: NETWORKS = "mainnet") {
       .filter((i: any) => i > 0);
     const ethPrice = await getEthPrice();
 
-    const record = {
+    records.push({
       blockNr: Number(block.number),
       timestamp: new Date(Number(block.timestamp) * 1000),
       network: network,
@@ -53,21 +51,20 @@ export async function Index(network: NETWORKS = "mainnet") {
       avg: getAverage(fees),
       median: getMedian(fees),
       ethPrice: ethPrice,
-    };
-
-    console.log(`[${network}] Add to db`, record);
-    try {
-      await db.blocks.upsert({
-        where: { blockNr: record.blockNr, network: network },
-        update: record,
-        create: record,
-      });
-    } catch (e) {
-      console.log(`[${network}] Unable to save block # ${blockNr}`, record);
-      console.error(e);
-    }
+    });
 
     blockNr--;
+  }
+
+  console.log(`[${network}] Adding ${records.length} block records to the database..`);
+  try {
+    await db.blocks.createMany({
+      data: records,
+      skipDuplicates: true,
+    });
+  } catch (e) {
+    console.log(`[${network}] Unable to save records`);
+    console.error(e);
   }
 
   console.log(`[${network}] Completed.`);
