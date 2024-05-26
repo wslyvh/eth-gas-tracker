@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Blocks {
+  blockNr   Int      @id @unique
+  network   String
+  timestamp DateTime
+  baseFee   Float
+  gasLimit  Float
+  gasUsed   Float
+  txCount   Int
+  min       Float
+  max       Float
+  avg       Float
+  median    Float
+  ethPrice  Float
+}
