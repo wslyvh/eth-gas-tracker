@@ -38,7 +38,7 @@ export async function Index(network: NETWORKS = "mainnet") {
       .filter((i: any) => i > 0);
     const ethPrice = await getEthPrice();
 
-    records.push({
+    const record = {
       blockNr: Number(block.number),
       timestamp: new Date(Number(block.timestamp) * 1000),
       network: network,
@@ -51,22 +51,24 @@ export async function Index(network: NETWORKS = "mainnet") {
       avg: getAverage(fees),
       median: getMedian(fees),
       ethPrice: ethPrice,
-    });
+    }
 
+    // console.log(`[${network}] Add block records to database`, record);
+    try {
+      await db.blocks.upsert({
+        where: { blockNr: record.blockNr, network: network },
+        update: record,
+        create: record,
+      });
+    } catch (e) {
+      console.log(`[${network}] Unable to save block # ${blockNr}`, record);
+      console.error(e);
+    }
+
+    records.push(record);
     blockNr--;
   }
 
-  console.log(`[${network}] Adding ${records.length} block records to the database..`);
-  try {
-    await db.blocks.createMany({
-      data: records,
-      skipDuplicates: true,
-    });
-  } catch (e) {
-    console.log(`[${network}] Unable to save records`);
-    console.error(e);
-  }
-
-  console.log(`[${network}] Completed.`);
+  console.log(`[${network}] Completed. ${records.length} records processed`);
   return;
 }
