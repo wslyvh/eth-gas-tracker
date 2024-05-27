@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createPublicClient, formatGwei, http, parseAbi } from "viem";
 import { mainnet } from "viem/chains";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 export const revalidate = 12;
 
 export async function GET() {
@@ -29,8 +29,10 @@ export async function GET() {
         .then((res) => Math.round((Number(res) / 1e8) * 100) / 100),
     ]);
 
-    const baseFee = Math.round(Number(formatGwei(block.baseFeePerGas!!)) * 100) / 100
-    const nextFee = Math.round(Number(formatGwei(pending.baseFeePerGas!!)) * 100) / 100
+    const baseFee =
+      Math.round(Number(formatGwei(block.baseFeePerGas!!)) * 100) / 100;
+    const nextFee =
+      Math.round(Number(formatGwei(pending.baseFeePerGas!!)) * 100) / 100;
     return NextResponse.json({
       data: {
         blockNr: String(block.number),
@@ -41,7 +43,9 @@ export async function GET() {
         difference: Math.round((nextFee - baseFee) * 100) / 100,
         gasLimit: Number(block.gasLimit),
         gasUsed: Number(block.gasUsed),
-        utilization: Math.round((Number(block.gasUsed) / Number(block.gasLimit)) * 100),
+        utilization: Math.round(
+          (Number(block.gasUsed) / Number(block.gasLimit)) * 100
+        ),
         transactionCount: block.transactions.length,
         lastUpdate: Date.now(),
       },
