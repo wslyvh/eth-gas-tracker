@@ -7,7 +7,7 @@ export async function GET() {
   console.log("GET /indexer");
 
   try {
-    await Promise.all([Index("mainnet"), Index("optimism"), Index("base")]);
+    await Promise.all([Index("mainnet"), Index("optimism"), Index("base"), Index('arbitrum')]);
 
     return NextResponse.json({
       data: {

@@ -23,8 +23,10 @@ export async function Index(network: NETWORKS = "mainnet") {
     orderBy: { blockNr: "desc" },
   });
 
-  const runUntil =
-    lastProcessedBlock?.blockNr || currentBlock - BigInt(DEFAULT_LIMIT);
+  let runUntil = currentBlock - BigInt(DEFAULT_LIMIT);
+  if (network === "mainnet" && lastProcessedBlock?.blockNr) {
+    runUntil = BigInt(lastProcessedBlock?.blockNr);
+  }
   console.log(`[${network}] Process blocks # ${runUntil} / ${currentBlock}`);
 
   let blockNr = currentBlock;
@@ -51,7 +53,7 @@ export async function Index(network: NETWORKS = "mainnet") {
       avg: getAverage(fees),
       median: getMedian(fees),
       ethPrice: ethPrice,
-    }
+    };
 
     // console.log(`[${network}] Add block records to database`, record);
     try {
