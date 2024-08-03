@@ -1,6 +1,7 @@
 import { createClient as sqlite } from "@libsql/client";
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
+import { join } from "path";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -24,8 +25,9 @@ export async function GET() {
 
     try {
       console.log("Fetching Sqlite data...");
+      const dbPath = join(process.cwd(), "src/db", `${network}.db`);
       const db1 = sqlite({
-        url: `file:src/db/${network}.db`,
+        url: `file:${dbPath}`,
       });
       const { rows: blocks } = await db1.execute("SELECT * FROM blocks");
       console.log("BLOCKS", blocks);
