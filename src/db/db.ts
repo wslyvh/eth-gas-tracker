@@ -27,6 +27,19 @@ export async function dbClient(network: NETWORKS = "mainnet") {
   return db;
 }
 
+export async function cleanup(network: NETWORKS = "mainnet") {
+  const db = await dbClient(network);
+
+  // 30 days = 2592000
+  // 14 days = 1209600
+  // 1 week = 604800
+  const result = await db.execute(
+    "DELETE FROM blocks WHERE timestamp < (strftime('%s', 'now') - 1209600);"
+  );
+  console.log("Cleanup", network, result.rowsAffected);
+  return true;
+}
+
 export async function getLatestBlock(network: NETWORKS = "mainnet") {
   const db = await dbClient(network);
   const { rows: blocks } = await db.execute(
@@ -56,5 +69,5 @@ export async function getAverage(network: NETWORKS = "mainnet") {
       strftime('%Y-%m-%dT%H', datetime(timestamp, 'unixepoch')) DESC;
   `);
 
-  return rows
+  return rows;
 }

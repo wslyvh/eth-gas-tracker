@@ -1,4 +1,4 @@
-import { dbClient, getLatestBlock } from "./db";
+import { cleanup, dbClient, getLatestBlock } from "./db";
 import { Chain, createPublicClient, http } from "viem";
 import { mainnet, arbitrum, optimism } from "viem/chains";
 import { formatGwei } from "viem/utils";
@@ -9,14 +9,20 @@ dotenv.config();
 run();
 
 async function run() {
-  console.log("Index db..");
+  // console.log("Index db..");
+  // await Promise.all([
+  //   index("mainnet"),
+  //   index("optimism"),
+  //   index("base"),
+  //   index("arbitrum"),
+  // ]);
 
-  
+  console.log("Cleanup..");
   await Promise.all([
-    index("mainnet"),
-    index("optimism"),
-    index("base"),
-    index("arbitrum"),
+    cleanup("mainnet"),
+    cleanup("optimism"),
+    cleanup("base"),
+    cleanup("arbitrum"),
   ]);
 }
 
