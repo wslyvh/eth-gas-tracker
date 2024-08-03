@@ -1,0 +1,24 @@
+name: Awesome
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - run: yarn install
+      - run: yarn db:indexer
+        env:
+          INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+      - uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: '[skip ci] gas indexer'

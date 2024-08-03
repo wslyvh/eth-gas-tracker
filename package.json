@@ -9,6 +9,8 @@
     "start": "next start",
     "db:generate": "prisma generate --schema=src/db/schema.prisma && prisma db push --schema src/db/schema.prisma",
     "db:studio": "prisma studio --schema src/db/schema.prisma",
+    "db:migrate": "ts-node src/db/migrate.ts",
+    "db:indexer": "ts-node src/db/indexer.ts",
     "lint": "next lint"
   },
   "dependencies": {
