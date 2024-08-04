@@ -7,15 +7,12 @@
     "prebuild": "yarn db:generate",
     "build": "next build",
     "start": "next start",
-    "db:generate": "prisma generate --schema=src/db/schema.prisma && prisma db push --schema src/db/schema.prisma",
-    "db:studio": "prisma studio --schema src/db/schema.prisma",
     "db:migrate": "ts-node src/db/migrate.ts",
     "db:indexer": "ts-node src/db/indexer.ts",
     "lint": "next lint"
   },
   "dependencies": {
     "@libsql/client": "^0.8.1",
-    "@prisma/client": "^5.14.0",
     "@supabase/supabase-js": "^2.39.7",
     "@tanstack/react-query": "^5.24.1",
     "apexcharts": "^3.46.0",
@@ -41,7 +38,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
-    "prisma": "^5.14.0",
     "tailwindcss": "^3.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5"
