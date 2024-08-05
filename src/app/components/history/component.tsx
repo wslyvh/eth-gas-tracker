@@ -40,7 +40,7 @@ export function History(props: Props) {
     {
       name: "median",
       type: "column",
-      data: props.data.map((block) => block.median),
+      data: props.data.map((block) => Math.round(block.median)),
     },
     {
       name: "utilization",
