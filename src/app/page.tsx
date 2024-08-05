@@ -68,9 +68,9 @@ export default async function Home() {
         
         <LatestDataWrapper />
 
-        <TransactionCostsDataWrapper />
-
         <HistoryDataWrapper /> 
+
+        <TransactionCostsDataWrapper />
 
         <AveragesDataWrapper />
 
