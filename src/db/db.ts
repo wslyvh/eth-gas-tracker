@@ -29,6 +29,8 @@ export async function dbClient(network: NETWORKS = "mainnet") {
 
 export async function cleanup(network: NETWORKS = "mainnet") {
   const db = await dbClient(network);
+  // const emptyRecords = await db.execute("DELETE FROM blocks WHERE min = 0 AND max = 0 AND avg = 0 AND median = 0;");
+  // console.log("DELETE Empty records", network, emptyRecords.rowsAffected);
 
   // 30 days = 2592000
   // 14 days = 1209600
@@ -46,6 +48,14 @@ export async function getLatestBlock(network: NETWORKS = "mainnet") {
     "SELECT * FROM blocks ORDER BY blockNr DESC LIMIT 1"
   );
   return blocks[0];
+}
+
+export async function getHistory(network: NETWORKS = "mainnet", limit: number = 50) {
+  const db = await dbClient(network);
+  const { rows } = await db.execute(
+    `SELECT * FROM blocks ORDER BY blockNr DESC LIMIT ${limit}`
+  );
+  return rows;
 }
 
 export async function getAverage(network: NETWORKS = "mainnet") {

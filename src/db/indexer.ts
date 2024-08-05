@@ -35,7 +35,7 @@ async function index(network: string = "mainnet") {
   const currentBlock = await client.getBlockNumber();
   const latestBlock = await getLatestBlock(network as any);
 
-  let runUntil = currentBlock - BigInt(100);
+  let runUntil = currentBlock - BigInt(20);
   if (network === "mainnet" && latestBlock?.blockNr) {
     runUntil = BigInt(latestBlock.blockNr as number);
   }
@@ -46,7 +46,7 @@ async function index(network: string = "mainnet") {
   while (blockNr > runUntil) {
     console.log(`[${network}] # ${blockNr}`);
 
-    const block = await client.getBlock({ blockNumber: blockNr });
+    const block = await client.getBlock({ blockNumber: blockNr, includeTransactions: true });
     const fees = block.transactions
       .map((i: any) => toRoundedGwei(i.maxFeePerGas))
       .filter((i: any) => i > 0);

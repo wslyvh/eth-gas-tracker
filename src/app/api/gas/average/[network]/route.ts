@@ -1,10 +1,10 @@
 import { getAverage } from "@/db/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static'; // force-dynamic to enable searchParams
 export const revalidate = 3600;
 
-export async function GET(req: Request, { params }: { params: { network: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { network: string } }) {
   console.log("GET /average", params.network);
 
   try {

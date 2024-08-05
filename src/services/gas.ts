@@ -1,10 +1,3 @@
-export interface GasBlock {
-  blockNr: string;
-  baseFee: number;
-  utilization: number;
-}
-
-// Old useWeb3 format used in Heatmap
 export interface GasFee {
   blockNr: number
   period: string // timestamp
@@ -41,7 +34,7 @@ export async function fetchLatestGas(baseUri: string = ''): Promise<GasInfo> {
   return response.json().then((res) => res.data);
 }
 
-export async function fetchGasHistory(baseUri: string = ''): Promise<DataWrapper<GasBlock[]>> {
+export async function fetchGasHistory(baseUri: string = ''): Promise<DataWrapper<GasFee[]>> {
   console.log("Fetching gas history..", baseUri);
   const response = await fetch(`${baseUri}/api/gas/history`, { next: { revalidate: 12 } });
   return response.json().then((res) => {

@@ -1,4 +1,4 @@
-import { GasBlock } from "@/services/gas";
+import { GasFee } from "@/services/gas";
 import { ApexOptions } from "apexcharts";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
@@ -8,7 +8,7 @@ const DynamicChart = dynamic(() => import("react-apexcharts"), {
 });
 
 interface Props {
-  data: GasBlock[];
+  data: GasFee[];
   lastUpdate: number;
 }
 
@@ -38,9 +38,14 @@ export function History(props: Props) {
       data: props.data.map((block) => block.baseFee),
     },
     {
+      name: "median",
+      type: "column",
+      data: props.data.map((block) => block.median),
+    },
+    {
       name: "utilization",
       type: "line",
-      data: props.data.map((block) => block.utilization),
+      data: props.data.map((block) => Math.round((Number(block.gasUsed / block.gasLimit)) * 100)),
     },
   ];
 

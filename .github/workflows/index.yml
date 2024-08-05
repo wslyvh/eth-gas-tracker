@@ -1,6 +1,8 @@
 name: Indexer
 
 on:
+  schedule:
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,4 +21,4 @@ jobs:
       - uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
-          message: '[skip ci] gas indexer'
+          message: '[action] gas indexer'

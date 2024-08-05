@@ -1,46 +1,18 @@
-import { NextResponse } from "next/server";
-import { createPublicClient, formatGwei, http } from "viem";
-import { mainnet } from "viem/chains";
+import { getHistory } from "@/db/db";
+import { NextRequest, NextResponse } from "next/server";
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-static'; // force-dynamic to enable searchParams
 export const revalidate = 12;
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   console.log("GET /history");
 
-  const client = createPublicClient({
-    chain: mainnet,
-    transport: http(
-      `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
-      { batch: true }
-    ),
-  });
-
   try {
-    const historicalBlocks = 50;
-    const feeHistory = await client
-      .getFeeHistory({ blockCount: historicalBlocks, rewardPercentiles: [30] })
-      .then((res) => {
-        let blockNr = res.oldestBlock;
-        let index = 0;
-        const blocks = [];
-        while (blockNr < res.oldestBlock + BigInt(historicalBlocks)) {
-          blocks.push({
-            blockNr: blockNr.toString(),
-            baseFee: Math.round(Number(formatGwei(res.baseFeePerGas[index])) * 100) / 100, // Number(res.baseFeePerGas[index]),
-            utilization: Math.round((Number(res.gasUsedRatio[index])) * 100),
-          });
-
-          blockNr++;
-          index++;
-        }
-
-        return blocks;
-      });
+    const history = await getHistory('mainnet', 50);
 
     return NextResponse.json({
       data: {
-        blocks: feeHistory,
+        blocks: history,
         lastUpdate: Date.now(),
       },
     });
