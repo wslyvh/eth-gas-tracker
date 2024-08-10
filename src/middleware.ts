@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const API_KEYS = process.env.API_KEYS?.split(",") ?? [];
+const ALLOWED_ORIGINS = ['http://localhost:3000', 'https://www.ethgastracker.com', 'https://www.useweb3.xyz'];
+
 export async function middleware(req: NextRequest) {
   const apiKey = getParameterByName("apiKey", req.nextUrl.href);
   console.log("API Request", req.nextUrl.href, "|", "origin", req.nextUrl.origin);
+
+  if (ALLOWED_ORIGINS.includes(req.nextUrl.origin)) {
+    return NextResponse.next();
+  }
 
   if (!apiKey) {
     return NextResponse.json("No API Key provided", { status: 401 });
