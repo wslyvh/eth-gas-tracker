@@ -17,7 +17,7 @@ export async function GET(req: NextRequest, { params }: { params: { network: str
       await client.getBlock({ blockTag: "latest" }),
       await client.getBlock({ blockTag: "pending" }),
       await client.estimateFeesPerGas(),
-      await client.getFeeHistory({ blockCount: 20, blockTag: 'pending', rewardPercentiles: [10, 60, 90] }),
+      await client.getFeeHistory({ blockCount: 5, blockTag: 'pending', rewardPercentiles: [5, 40, 70] }),
       mainnet
         .readContract({
           address: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419", // Chainlink Price Feed
