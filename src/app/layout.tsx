@@ -13,7 +13,12 @@ export default function RootLayout(props: PropsWithChildren) {
       </head>
       <body className="w-screen h-screen h-full p-8 pt-4">
         <main className="flex flex-col container mx-auto items-center gap-4">
-          <h1 className="text-3xl my-4">⛽ Ethereum Gas Tracker</h1>
+          <Link href="/">
+            <h1 className="text-3xl my-4">⛽ Ethereum Gas Tracker</h1>
+          </Link>
+          <div className="w-full max-w-[1200px] text-right">
+            <Link href="/docs">API Docs &raquo;</Link>
+          </div>
 
           <DataProvider>{props.children}</DataProvider>
 

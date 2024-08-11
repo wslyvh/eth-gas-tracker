@@ -55,8 +55,39 @@ export default async function Home() {
       <h3>Endpoints</h3>
       <ul>
         <li>
+          <code>/oracle</code> or <code>/oracles/[network]</code> - Get the
+          latest gas prices and estimates for gas fees.
+          <br />
+          <p>
+            <b>Response</b>
+            <pre>
+              <code>
+                {`{
+    "data": {
+        "blockNr": "20505507",
+        "timestamp": 1723380959,
+        "ethPrice": 2635.57,
+        "baseFee": 2967671685,
+        "nextFee": 3129340348,
+        "estimates": {
+            "maxFeePerGas": 3562206022,
+            "maxPriorityFeePerGas": 1000000
+        },
+        "oracle": {
+            "slow": 3.24,
+            "normal": 5.36,
+            "fast": 12.94
+        },
+        "lastUpdate": 1723381091617
+    }
+}`}
+              </code>
+            </pre>
+          </p>
+        </li>
+        <li>
           <code>/latest</code> or <code>/latest/[network]</code> - Get the
-          latest gas prices.
+          latest gas prices and block utilization.
           <br />
           <p>
             <b>Response</b>
