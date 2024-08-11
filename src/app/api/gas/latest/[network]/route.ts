@@ -1,20 +1,22 @@
 import { CreatePublicClient } from "@/app/utils/web3";
-import { NextResponse } from "next/server";
-import {formatGwei, parseAbi } from "viem";
+import { NextRequest, NextResponse } from "next/server";
+import { createPublicClient, formatGwei, http, parseAbi } from "viem";
+import { mainnet } from "viem/chains";
 
 export const dynamic = "force-static";
 export const revalidate = 12;
 
-export async function GET() {
-  console.log("GET /latest");
+export async function GET(req: NextRequest, { params }: { params: { network: string } }) {
+  console.log(`GET /latest/${params.network}`);
 
-  const client = CreatePublicClient("mainnet");
+  const mainnet = CreatePublicClient("mainnet");
+  const client = CreatePublicClient(params.network as any);
 
   try {
     const [block, pending, ethPrice] = await Promise.all([
       await client.getBlock({ blockTag: "latest" }),
       await client.getBlock({ blockTag: "pending" }),
-      client
+      mainnet
         .readContract({
           address: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419", // Chainlink Price Feed
           abi: parseAbi(["function latestAnswer() view returns (int256)"]),

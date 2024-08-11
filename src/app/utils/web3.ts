@@ -24,7 +24,7 @@ export function CreatePublicClient(network: NETWORKS = "mainnet") {
     return createPublicClient({
         chain: chain,
         batch: {
-        multicall: true,
+            multicall: true,
         },
         transport: http(url),
     })

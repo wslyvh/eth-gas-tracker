@@ -66,8 +66,10 @@ export async function getAverage(network: NETWORKS = "mainnet") {
       AVG(baseFee) AS baseFee,
       AVG(gasLimit) AS gasLimit,
       AVG(gasUsed) AS gasUsed,
+      AVG(txCount) AS txCount,
       AVG(min) AS min,
       AVG(median) AS median,
+      AVG(max) AS max,
       AVG(ethPrice) AS ethPrice
     FROM 
       blocks
