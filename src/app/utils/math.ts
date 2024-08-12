@@ -1,7 +1,9 @@
 import { formatGwei } from 'viem/utils'
 
-export function toRoundedGwei(value: any) {
-  return Math.round(Number(formatGwei(value ?? 0)) * 100) / 100
+export function toRoundedGwei(value: any, decimals: boolean = false) {
+  const nr = Number(formatGwei(value ?? 0))
+  if (nr < 1 || decimals) return Math.round(nr * 100) / 100
+  return Math.round(nr)
 }
 
 export function getMin(numbers: Array<number>) {

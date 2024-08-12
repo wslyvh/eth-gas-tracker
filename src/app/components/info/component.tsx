@@ -42,7 +42,7 @@ export function Info({ data }: Props) {
       </div>
 
       <div className="flex flex-col relative items-center bg-white rounded-xl w-full p-4 md:p-8">
-        <span className="absolute top-0 right-0 text-right text-4xl text-slate-200 p-4">
+        <div className="absolute top-0 right-0 text-right text-4xl text-slate-200 p-4">
           <div
             className={`flex text-xs items-center p-1 rounded-xl ${
               data.difference >= 0
@@ -67,10 +67,10 @@ export function Info({ data }: Props) {
               {data.difference < 0 && <>{Math.abs(data.difference)}%</>}
             </span>
           </div>
-        </span>
+        </div>
 
-        <div className="flex flex-col w-full h-full items-center justify-center rounded-full bg-slate-100 h-32 w-32 mt-2">
-          <span className="text-4xl">{toRoundedGwei(data.nextFee)}</span>
+        <div className="flex flex-col items-center justify-center rounded-full bg-slate-100 h-32 w-32 mt-2">
+          <span className="text-4xl">{toRoundedGwei(data.nextFee, true)}</span>
           <span className="text-sm text-slate-500 mt-1">Gwei</span>
         </div>
       </div>
