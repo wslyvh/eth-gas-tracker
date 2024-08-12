@@ -30,7 +30,7 @@ export async function generateMetadata() {
 
 export default async function Home() {
   return (
-    <div className="prose">
+    <div className="prose w-11/12 md:w-full">
       <h2>Ethereum Gas API</h2>
       <p>{description}</p>
 
@@ -64,16 +64,37 @@ export default async function Home() {
               <code>
                 {`{
     "data": {
-        "blockNr": "20504050",
-        "timestamp": 1723363343,
-        "baseFee": 0.95,
-        "nextFee": 0.92,
-        "difference": -0.03,
-        "gasLimit": 30000000,
-        "gasUsed": 10737402,
-        "utilization": 36,
-        "transactionCount": 122,
-        "lastUpdate": 1723368892836
+        "network": "mainnet",
+        "blockNr": "20511000",
+        "timestamp": 1723447187,
+        "ethPrice": 2572,
+        "baseFee": 1496748429,
+        "nextFee": 1503379486,
+        "difference": 0,
+        "block": {
+            "gasLimit": 30000000,
+            "gasUsed": 15531637,
+            "utilization": 52,
+            "transactionCount": 150
+        },
+        "oracle": {
+            "slow": {
+                "gasFee": 1503734329,
+                "priorityFee": 354843,
+                "gwei": 1.5
+            },
+            "normal": {
+                "gasFee": 2322253240,
+                "priorityFee": 818873754,
+                "gwei": 2.32
+            },
+            "fast": {
+                "gasFee": 3403588273,
+                "priorityFee": 1900208787,
+                "gwei": 3.4
+            }
+        },
+        "lastUpdate": 1723453159371
     }
 }`}
               </code>
@@ -92,16 +113,37 @@ export default async function Home() {
               <code>
                 {`{
     "data": {
-        "blockNr": "15537394",
-        "timestamp": 1663224179,
-        "baseFee": 48.81,
-        "nextFee": 54.91,
-        "difference": 6.1,
-        "gasLimit": 30000000,
-        "gasUsed": 29983006,
-        "utilization": 100,
-        "transactionCount": 80,
-        "lastUpdate": 1723368915518
+        "network": "mainnet",
+        "blockNr": "20511000",
+        "timestamp": 1723447187,
+        "ethPrice": 2572,
+        "baseFee": 1496748429,
+        "nextFee": 1503379486,
+        "difference": 0,
+        "block": {
+            "gasLimit": 30000000,
+            "gasUsed": 15531637,
+            "utilization": 52,
+            "transactionCount": 150
+        },
+        "oracle": {
+            "slow": {
+                "gasFee": 1503734329,
+                "priorityFee": 354843,
+                "gwei": 1.5
+            },
+            "normal": {
+                "gasFee": 2322253240,
+                "priorityFee": 818873754,
+                "gwei": 2.32
+            },
+            "fast": {
+                "gasFee": 3403588273,
+                "priorityFee": 1900208787,
+                "gwei": 3.4
+            }
+        },
+        "lastUpdate": 1723453159371
     }
 }`}
               </code>
@@ -116,6 +158,7 @@ export default async function Home() {
             <pre>
               <code>{`{
     "data": {
+        "network": "mainnet",
         "blocks": [
             {
                 "blockNr": 20504260,
@@ -161,6 +204,7 @@ export default async function Home() {
               <code>
                 {`{
     "data": {
+        "network": "mainnet",
         "data": [
             {
                 "period": "2024-08-11T08:00:00+00:00",
