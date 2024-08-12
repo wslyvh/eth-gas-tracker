@@ -5,6 +5,9 @@ dotenv.config()
 export const DEFAULT_LIMIT = 10
 export type NETWORKS = 'mainnet' | 'arbitrum' | 'base' | 'optimism'
 
+export const API_PRICING = 20;
+export const API_PAYMENT_URL = "https://buy.stripe.com/00g5ng2e8faa5he7st";
+
 export const CONFIG = {
     NODE_ENV: process.env.NODE_ENV || 'development',
 
