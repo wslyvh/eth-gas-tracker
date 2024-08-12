@@ -54,21 +54,21 @@ export function LatestImageResponse(data: GasInfo) {
           <div tw="flex flex-col">
             <span tw="text-4xl">Block # {data.blockNr}</span>
             <span tw="text-slate-400">
-              {data.transactionCount} transactions
+              {data.block.transactionCount} transactions
             </span>
           </div>
           <div tw="flex flex-col">
-            <span tw="text-4xl">{data.utilization}%</span>
+            <span tw="text-4xl">{data.block.utilization}%</span>
             <span tw="text-slate-400">
-              {Math.round(data.gasUsed / 1e6)}M /{" "}
-              {Math.round(data.gasLimit / 1e6)}M
+              {Math.round(data.block.gasUsed / 1e6)}M /{" "}
+              {Math.round(data.block.gasLimit / 1e6)}M
             </span>
           </div>
         </div>
 
         <div tw="flex bg-slate-300 mt-4 w-full rounded-xl">
           <span
-            tw={`bg-[#4a00ff] w-[${data.utilization}%] h-2 rounded-xl`}
+            tw={`bg-[#4a00ff] w-[${data.block.utilization}%] h-2 rounded-xl`}
           ></span>
         </div>
 
