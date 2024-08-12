@@ -11,7 +11,7 @@ export default function RootLayout(props: PropsWithChildren) {
       <head>
         <PlausibleProvider domain={SITE_DOMAIN} />
       </head>
-      <body className="w-screen h-screen h-full p-8 pt-4">
+      <body className="w-screen h-screen h-full p-2 sm:p-8 pt-4">
         <main className="flex flex-col container mx-auto items-center gap-4">
           <Link href="/">
             <h1 className="text-3xl my-4">⛽ Ethereum Gas Tracker</h1>

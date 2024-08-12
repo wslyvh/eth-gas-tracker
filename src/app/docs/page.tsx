@@ -30,8 +30,8 @@ export async function generateMetadata() {
 
 export default async function Home() {
   return (
-    <div className="prose w-11/12 md:w-full">
-      <h2>Ethereum Gas API</h2>
+    <div className="prose max-w-[1200px] w-11/12 md:w-full">
+      <h2 className="text-2xl font-bold">Ethereum Gas API</h2>
       <p>{description}</p>
 
       <h3>Supported networks</h3>
@@ -53,10 +53,14 @@ export default async function Home() {
       </p>
 
       <h3>Endpoints</h3>
+      <p>
+        The base uri for the API is{" "}
+        <code>https://www.ethgastracker.com/api</code>.
+      </p>
       <ul>
         <li>
-          <code>/latest</code> or <code>/latest/[network]</code> - Get the
-          latest gas prices and block utilization.
+          <code>/gas/latest</code> or <code>/gas/latest/[network]</code> - Get
+          the latest gas prices and block utilization.
           <br />
           <p>
             <b>Response</b>
@@ -102,8 +106,9 @@ export default async function Home() {
           </p>
         </li>
         <li>
-          <code>/[blockNr]</code> or <code>/[blockNr]/[network]</code> - Get the
-          gas prices for a specific block. Only supports blocks since EIP-1559.
+          <code>/gas/[blockNr]</code> or <code>/gas/[blockNr]/[network]</code> -
+          Get the gas prices for a specific block. Only supports blocks since
+          EIP-1559.
           <br />
           <p>
             <b>
@@ -151,8 +156,8 @@ export default async function Home() {
           </p>
         </li>
         <li>
-          <code>/history</code> or <code>/history/[network]</code> - Get the gas
-          prices of the latest x number of blocks (50 by default).
+          <code>/gas/history</code> or <code>/gas/history/[network]</code> - Get
+          the gas prices of the latest x number of blocks (50 by default).
           <p>
             <b>Response</b>
             <pre>
@@ -196,8 +201,8 @@ export default async function Home() {
           </p>
         </li>
         <li>
-          <code>/average</code> or <code>/average/[network]</code> - Gets the
-          hourly average gas prices of the past week.
+          <code>/gas/average</code> or <code>/gas/average/[network]</code> -
+          Gets the hourly average gas prices of the past week.
           <p>
             <b>Response</b>
             <pre>
