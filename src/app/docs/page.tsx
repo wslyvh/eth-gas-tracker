@@ -1,3 +1,4 @@
+import { Pricing } from "../components/pricing";
 import { SITE_NAME, SITE_URL, SOCIAL_TWITTER } from "../utils/site";
 
 const title = `API Docs @ ${SITE_NAME}`;
@@ -33,6 +34,8 @@ export default async function Home() {
     <div className="prose max-w-[1200px] w-11/12 md:w-full">
       <h2 className="text-2xl font-bold">Ethereum Gas API</h2>
       <p>{description}</p>
+      
+      <Pricing />
 
       <h3>Supported networks</h3>
       <ul>

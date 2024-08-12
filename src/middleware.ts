@@ -5,7 +5,7 @@ const ALLOWED_ORIGINS = ['http://localhost:3000', 'https://www.ethgastracker.com
 
 export async function middleware(req: NextRequest) {
   const apiKey = getParameterByName("apiKey", req.nextUrl.href);
-  console.log("API Request", req.nextUrl.href, "|", "origin", req.nextUrl.origin);
+  console.log("Middleware Request", req.nextUrl.href, "|", "origin", req.nextUrl.origin);
 
   if (ALLOWED_ORIGINS.includes(req.nextUrl.origin)) {
     return NextResponse.next();
@@ -24,7 +24,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: ["/api/gas/:path*", "/api/blobs/:path*"],
 };
 
 function getParameterByName(name: string, url: string) {
