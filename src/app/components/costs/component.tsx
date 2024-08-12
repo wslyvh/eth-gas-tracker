@@ -1,3 +1,4 @@
+import { toRoundedGwei } from "@/app/utils/math";
 import { GasInfo } from "@/services/gas";
 import dayjs from "dayjs";
 
@@ -40,7 +41,7 @@ export function TransactionCosts({ data }: Props) {
                 <tr key={i.name}>
                   <td>{i.name}</td>
                   <td>{i.cost.toLocaleString("en-US")}</td>
-                  <td>${((data.baseFee * i.cost) / 1e9 * data.ethPrice).toFixed(2)}</td>
+                  <td>${((toRoundedGwei(data.baseFee) * i.cost) / 1e9 * data.ethPrice).toFixed(2)}</td>
                 </tr>
               );
             })}

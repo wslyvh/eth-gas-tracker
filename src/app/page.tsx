@@ -19,6 +19,7 @@ import {
 import { TransactionCostsDataWrapper } from "./components/costs";
 import { getFrameMetadata } from "frog/next";
 import { AveragesDataWrapper } from "./components/average";
+import { InfoDataWrapper } from "./components/info";
 
 export async function generateMetadata() {
   const url =
@@ -69,7 +70,7 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <LatestDataWrapper />
+      <InfoDataWrapper />
 
       <HistoryDataWrapper />
 

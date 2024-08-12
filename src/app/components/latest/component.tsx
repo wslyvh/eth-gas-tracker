@@ -1,3 +1,4 @@
+import { toRoundedGwei } from "@/app/utils/math";
 import { SITE_NAME } from "@/app/utils/site";
 import { GasInfo } from "@/services/gas";
 import dayjs from "dayjs";
@@ -8,7 +9,7 @@ interface Props {
 
 export function Latest({ data }: Props) {
   if (document) {
-    document.title = `${data.baseFee} Gwei | ${SITE_NAME}`;
+    document.title = `${toRoundedGwei(data.baseFee)} Gwei | ${SITE_NAME}`;
   }
 
   return (
@@ -19,7 +20,7 @@ export function Latest({ data }: Props) {
 
       <div className="flex relative grow w-auto h-auto justify-center items-center my-4">
         <div className="flex flex-col items-center justify-center rounded-full bg-slate-100 h-48 w-48">
-          <span className="text-6xl">{data.nextFee}</span>
+          <span className="text-6xl">{toRoundedGwei(data.nextFee)}</span>
           <span className="text-slate-500 mt-2">Gwei</span>
         </div>
 
@@ -56,21 +57,21 @@ export function Latest({ data }: Props) {
           <div className="flex flex-col">
             <span className="text-2xl">Block # {data.blockNr}</span>
             <span className="text-sm text-slate-400">
-              {data.transactionCount} transactions
+              {data.block.transactionCount} transactions
             </span>
           </div>
           <div className="flex flex-col align-right text-right">
-            <span className="text-2xl">{data.utilization}%</span>
+            <span className="text-2xl">{data.block.utilization}%</span>
             <span className="text-sm text-slate-400">
-              {Math.round(data.gasUsed / 1e6)}M /{" "}
-              {Math.round(data.gasLimit / 1e6)}M
+              {Math.round(data.block.gasUsed / 1e6)}M /{" "}
+              {Math.round(data.block.gasLimit / 1e6)}M
             </span>
           </div>
         </div>
 
         <progress
           className="progress progress-primary mt-4"
-          value={`${data.utilization}`}
+          value={`${data.block.utilization}`}
           max="100"
         ></progress>
 
