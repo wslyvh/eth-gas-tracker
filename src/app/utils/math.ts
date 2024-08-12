@@ -29,4 +29,3 @@ export function getMedian(numbers: Array<number>) {
   numbers = [...numbers].sort((a, b) => a - b)
   return numbers.length % 2 !== 0 ? numbers[middle] : (numbers[middle - 1] + numbers[middle]) / 2
 }
-

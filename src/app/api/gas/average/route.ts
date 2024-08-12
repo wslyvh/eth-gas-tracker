@@ -12,6 +12,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       data: {
+        network: 'mainnet',
         data: data,
         lastUpdate: Date.now(),
       },

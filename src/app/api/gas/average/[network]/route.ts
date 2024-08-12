@@ -12,6 +12,7 @@ export async function GET(req: NextRequest, { params }: { params: { network: str
 
     return NextResponse.json({
       data: {
+        network: params.network,
         data: data,
         lastUpdate: Date.now(),
       },
