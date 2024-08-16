@@ -13,7 +13,7 @@ export function Pricing(props: Props) {
       <div className={className}>
         <div className="flex flex-col w-full">
           <span className="text-slate-800 text-2xl font-semibold">
-            Pricing
+            API Access {/* Pricing */}
           </span>
           <span className="text-slate-600">
             Unlock all features in a simple, transparent package.
@@ -26,10 +26,10 @@ export function Pricing(props: Props) {
           </ul>
         </div>
         <div className="flex flex-col text-center  w-full md:w-48 mt-4 md:mt-0 ">
-          <span className="text-4xl">€{API_PRICING}.00</span>
-          <span className="text-slate-400">billed monthly</span>
+          {/* <span className="text-4xl">€{API_PRICING}.00</span>
+          <span className="text-slate-400">billed monthly</span> */}
           <a
-            className="btn btn-primary btn-sm mt-4 w-full"
+            className="btn btn-primary btn-sm w-full" // mt-4
             href={API_PAYMENT_URL}
           >
             Get Started
