@@ -32,7 +32,7 @@ export function Pricing(props: Props) {
             className="btn btn-primary btn-sm w-full" // mt-4
             href={API_PAYMENT_URL}
           >
-            Get Started
+            Contact{/* Get Started */}
           </a>
         </div>
       </div>
