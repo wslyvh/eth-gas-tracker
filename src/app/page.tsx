@@ -8,7 +8,6 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-import { LatestDataWrapper } from "./components/latest";
 import { HistoryDataWrapper } from "./components/history";
 import {
   SITE_NAME,
@@ -71,11 +70,8 @@ export default async function Home() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <InfoDataWrapper />
-
       <HistoryDataWrapper />
-
       <TransactionCostsDataWrapper />
-
       <AveragesDataWrapper />
     </HydrationBoundary>
   );

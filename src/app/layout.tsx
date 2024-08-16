@@ -16,13 +16,28 @@ export default function RootLayout(props: PropsWithChildren) {
           <Link href="/">
             <h1 className="text-3xl my-4">⛽ Ethereum Gas Tracker</h1>
           </Link>
-          <div className="w-full max-w-[1200px] text-right">
+
+          <div className="flex justify-end w-full max-w-[1200px]">
             <Link href="/docs">API Docs &raquo;</Link>
           </div>
 
           <DataProvider>{props.children}</DataProvider>
 
-          <div className="text-xs pb-4">
+          <div className="text-center mt-4 mb-2">
+            <p className="prose max-w-4xl px-4 md:px-0">
+              ETH Gas Tracker helps you discover how gas works, why it matters
+              and help you set optimal gas fees to use the Ethereum network more
+              efficiently. Get real-time gas prices, historical data, and
+              average fees to time your transactions and save money. Ethereum
+              Gas Tracker is the best way to track gas prices and provides an
+              API for developers to integrate gas data into their applications.
+              Learn more about <Link href="/gas">Ethereum Gas</Link>.
+            </p>
+          </div>
+
+          <div className="flex text-xs gap-2 pb-4">
+            <Link href="https://x.com/wslyvh">wslyvh</Link>
+            <span>|</span>
             <Link href="https://github.com/wslyvh/eth-gas-tracker/">
               Github
             </Link>
