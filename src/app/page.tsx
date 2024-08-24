@@ -8,17 +8,17 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-import { HistoryDataWrapper } from "./components/history";
+import { HistoryDataWrapper } from "@/components/history";
 import {
   SITE_NAME,
   SITE_URL,
   SITE_DESCRIPTION,
   SOCIAL_TWITTER,
 } from "@/utils/site";
-import { TransactionCostsDataWrapper } from "./components/costs";
+import { TransactionCostsDataWrapper } from "@/components/costs";
 import { getFrameMetadata } from "frog/next";
-import { AveragesDataWrapper } from "./components/average";
-import { InfoDataWrapper } from "./components/info";
+import { AveragesDataWrapper } from "@/components/average";
+import { InfoDataWrapper } from "@/components/info";
 
 export async function generateMetadata() {
   const url =

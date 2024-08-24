@@ -5,8 +5,8 @@ import {
 } from "@tanstack/react-query";
 import { SITE_BLOB_DESCRIPTION, SITE_BLOB_NAME, SITE_URL, SOCIAL_TWITTER } from "@/utils/site";
 import { fetchBlobHistory, fetchBlobStats } from "@/services/blobs";
-import { BlobStatsDataWrapper } from "../components/stats";
-import { BlobHistoryDataWrapper } from "../components/blobs";
+import { BlobStatsDataWrapper } from "@/components/stats";
+import { BlobHistoryDataWrapper } from "@/components/blobs";
 import Link from "next/link";
 
 export async function generateMetadata() {

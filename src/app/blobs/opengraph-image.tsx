@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { fetchBlobStats } from "@/services/blobs";
 import { SITE_BLOB_NAME, SITE_URL } from "@/utils/site";
-import { BlobStatsImageResponse } from "../components/images/blobs";
+import { BlobStatsImageResponse } from "@/components/images/blobs";
 
 // Route segment config
 export const runtime = "edge";
