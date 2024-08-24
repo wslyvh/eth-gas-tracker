@@ -17,7 +17,8 @@ export default function RootLayout(props: PropsWithChildren) {
             <h1 className="text-3xl my-4">⛽ Ethereum Gas Tracker</h1>
           </Link>
 
-          <div className="flex justify-end w-full max-w-[1200px]">
+          <div className="flex justify-between w-full max-w-[1200px]">
+            <Link href="/learn">Learn More &raquo;</Link>
             <Link href="/docs">API Docs &raquo;</Link>
           </div>
 
