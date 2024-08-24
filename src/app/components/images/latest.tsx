@@ -1,8 +1,11 @@
+import { toRoundedGwei } from "@/app/utils/math";
 import { SITE_EMOJI, SITE_NAME } from "@/app/utils/site";
 import { GasInfo } from "@/services/gas";
 import dayjs from "dayjs";
 
 export function LatestImageResponse(data: GasInfo) {
+  const rounded = toRoundedGwei(data.nextFee)
+
   return (
     <div tw="flex flex-col w-full h-full bg-white p-8 text-xl">
       <h1 tw='text-3xl'>
@@ -11,7 +14,7 @@ export function LatestImageResponse(data: GasInfo) {
 
       <div tw="flex relative grow w-auto h-auto justify-center my-8">
         <div tw="flex flex-col items-center justify-center rounded-full bg-slate-100 h-72 w-72">
-          <span tw="text-8xl">{data.nextFee}</span>
+          <span tw="text-8xl">{toRoundedGwei(data.nextFee, rounded < 10)}</span>
           <span tw="text-2xl text-slate-500 mt-2">Gwei</span>
         </div>
 
