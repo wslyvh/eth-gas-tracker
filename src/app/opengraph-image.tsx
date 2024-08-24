@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL } from "./utils/site";
+import { SITE_NAME, SITE_URL } from "@/utils/site";
 import { fetchLatestGas } from "@/services/gas";
 import { LatestImageResponse } from "./components/images/latest";
 import { ImageResponse } from "next/og";

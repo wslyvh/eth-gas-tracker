@@ -1,5 +1,5 @@
 /** @jsxImportSource frog/jsx */
-import { SITE_EMOJI, SITE_NAME, SITE_URL } from '@/app/utils/site'
+import { SITE_EMOJI, SITE_NAME, SITE_URL } from '@/utils/site'
 import { fetchLatestGas } from '@/services/gas'
 import dayjs from 'dayjs'
 import { Button, Frog } from 'frog'

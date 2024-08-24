@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL, SOCIAL_TWITTER } from "../utils/site";
+import { SITE_NAME, SITE_URL, SOCIAL_TWITTER } from "@/utils/site";
 
 const title = `Ethereum Gas | ${SITE_NAME}`;
 const description =

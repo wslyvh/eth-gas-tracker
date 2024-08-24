@@ -1,4 +1,4 @@
-import { getGasData } from "@/app/utils/gas";
+import { getGasData } from "@/utils/gas";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-static";

@@ -14,7 +14,7 @@ import {
   SITE_URL,
   SITE_DESCRIPTION,
   SOCIAL_TWITTER,
-} from "./utils/site";
+} from "@/utils/site";
 import { TransactionCostsDataWrapper } from "./components/costs";
 import { getFrameMetadata } from "frog/next";
 import { AveragesDataWrapper } from "./components/average";

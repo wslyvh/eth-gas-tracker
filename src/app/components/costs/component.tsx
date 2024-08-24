@@ -1,4 +1,4 @@
-import { toRoundedGwei } from "@/app/utils/math";
+import { toRoundedGwei } from "@/utils/math";
 import { GasInfo } from "@/services/gas";
 import dayjs from "dayjs";
 

@@ -1,4 +1,4 @@
-import { API_PRICING, API_PAYMENT_URL } from "@/app/utils/config";
+import { API_PRICING, API_PAYMENT_URL } from "@/utils/config";
 
 interface Props {
   className?: string;

@@ -1,5 +1,5 @@
-import { toRoundedGwei } from "@/app/utils/math";
-import { SITE_NAME } from "@/app/utils/site";
+import { toRoundedGwei } from "@/utils/math";
+import { SITE_NAME } from "@/utils/site";
 import { GasInfo } from "@/services/gas";
 import dayjs from "dayjs";
 

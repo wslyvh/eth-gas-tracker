@@ -1,5 +1,5 @@
-import { toByteSize, toBytes } from "@/app/utils/bytes";
-import { SITE_BLOB_NAME } from "@/app/utils/site";
+import { toByteSize, toBytes } from "@/utils/bytes";
+import { SITE_BLOB_NAME } from "@/utils/site";
 import { BlobStats } from "@/services/blobs";
 
 interface Props {

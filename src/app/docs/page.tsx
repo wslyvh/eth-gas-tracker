@@ -1,5 +1,5 @@
 import { Pricing } from "../components/pricing";
-import { SITE_NAME, SITE_URL, SOCIAL_TWITTER } from "../utils/site";
+import { SITE_NAME, SITE_URL, SOCIAL_TWITTER } from "@/utils/site";
 
 const title = `API Docs @ ${SITE_NAME}`;
 const description =

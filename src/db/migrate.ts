@@ -1,4 +1,4 @@
-import { NETWORKS } from "@/app/utils/config";
+import { NETWORKS } from "@/utils/config";
 import { createClient as supabaseClient } from "@supabase/supabase-js";
 import { dbClient } from "./db";
 import dayjs from "dayjs";

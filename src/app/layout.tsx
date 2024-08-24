@@ -1,6 +1,6 @@
 import DataProvider from "./providers/DataProvider";
 import PlausibleProvider from "next-plausible";
-import { SITE_DOMAIN } from "./utils/site";
+import { SITE_DOMAIN } from "@/utils/site";
 import { PropsWithChildren } from "react";
 import "@/assets/globals.css";
 import Link from "next/link";

@@ -1,4 +1,4 @@
-import { NETWORKS } from "@/app/utils/config";
+import { NETWORKS } from "@/utils/config";
 import { createClient } from "@libsql/client";
 import { join } from "path";
 
