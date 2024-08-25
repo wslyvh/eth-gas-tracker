@@ -27,14 +27,14 @@ export async function generateMetadata({ params }: Params) {
       siteName: SITE_NAME,
       description: description,
       url: SITE_URL,
-      images: "/opengraph-image",
+      images: `/network/${params.network}/opengraph-image`,
     },
     twitter: {
       card: "summary_large_image",
       site: SOCIAL_TWITTER,
       title: title,
       description: description,
-      images: "/opengraph-image",
+      images: `/network/${params.network}/opengraph-image`,
     },
   }
 }

@@ -3,13 +3,15 @@ import { SITE_EMOJI, SITE_NAME } from "@/utils/site";
 import { GasInfo } from "@/services/gas";
 import dayjs from "dayjs";
 
-export function LatestImageResponse(data: GasInfo) {
-  const rounded = toRoundedGwei(data.nextFee)
+export function LatestImageResponse(data: GasInfo, network: string = "") {
+  const rounded = toRoundedGwei(data.nextFee, true)
+  const networkName = network ? network.charAt(0).toUpperCase() + network.slice(1) : 'Ethereum'
+  const title = networkName ? `${networkName} Gas Tracker` : SITE_NAME
 
   return (
     <div tw="flex flex-col w-full h-full bg-white p-8 text-xl">
       <h1 tw='text-3xl'>
-        <span tw="pr-4">{SITE_EMOJI}</span> {SITE_NAME}
+        <span tw="pr-4">{SITE_EMOJI}</span> {title}
       </h1>
 
       <div tw="flex relative grow w-auto h-auto justify-center my-8">
