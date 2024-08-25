@@ -2,8 +2,9 @@ import DataProvider from "./providers/DataProvider";
 import PlausibleProvider from "next-plausible";
 import { SITE_DOMAIN } from "@/utils/site";
 import { PropsWithChildren } from "react";
-import "@/assets/globals.css";
+import { Navbar } from "@/components/navbar";
 import Link from "next/link";
+import "@/assets/globals.css";
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
@@ -13,14 +14,7 @@ export default function RootLayout(props: PropsWithChildren) {
       </head>
       <body className="w-screen h-screen h-full p-2 sm:p-8 pt-4">
         <main className="flex flex-col container mx-auto items-center gap-4">
-          <Link href="/">
-            <h1 className="text-3xl my-4">⛽ Ethereum Gas Tracker</h1>
-          </Link>
-
-          <div className="flex justify-between w-full max-w-[1200px]">
-            <Link href="/learn">Learn More &raquo;</Link>
-            <Link href="/docs">API Docs &raquo;</Link>
-          </div>
+          <Navbar />
 
           <DataProvider>{props.children}</DataProvider>
 

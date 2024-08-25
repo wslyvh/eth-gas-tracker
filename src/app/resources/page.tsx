@@ -2,7 +2,7 @@ import { GetPosts } from "@/services/content";
 import { SITE_NAME, SITE_URL, SOCIAL_TWITTER } from "@/utils/site";
 import Link from "next/link";
 
-const title = `Learn | ${SITE_NAME}`;
+const title = `Resources | ${SITE_NAME}`;
 const description =
   "Learn more about how gas works, why it matters and help you set optimal gas fees to use the Ethereum network more efficiently.";
 
@@ -36,7 +36,7 @@ export default async function Page() {
   return (
       <div className="grid gap-4">
         {posts.map((post) => (
-          <Link key={post.slug} href={`/learn/${post.slug}`}>
+          <Link key={post.slug} href={`/resources/${post.slug}`}>
             <article className='flex rounded-xl bg-base-300 p-4'>
                 <div className='w-full'>
                     <h2 className='text-xl font-bold mt-2'>{post.title}</h2>

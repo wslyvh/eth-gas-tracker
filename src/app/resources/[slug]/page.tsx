@@ -46,7 +46,7 @@ export default async function BlogPost({ params }: Params) {
     <div className='flex flex-col gap-2 mb-12'>
       <h1 className='text-2xl font-bold'>{post.title}</h1>
       <p>
-        <Link href='/learn' className="text-accent">← Back to overview</Link>
+        <Link href='/resources' className="text-accent">← Back to overview</Link>
       </p>
 
       <div className='prose max-w-[1200px] w-11/12 md:w-full'>

@@ -77,7 +77,7 @@ export function Info({ data }: Props) {
 
       <div className="flex flex-col relative bg-white rounded-xl w-full p-4 md:p-8">
         <span className="absolute w-full top-0 right-0 text-right text-4xl text-slate-200 p-4">
-          Slow
+          Normal
         </span>
 
         <span className="text-2xl">{data.oracle.slow.gwei} Gwei</span>
