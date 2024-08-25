@@ -4,12 +4,16 @@ import { fetchLatestGas } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
 import { Info } from "./component";
 
-export function InfoDataWrapper() {
+interface Props {
+  network?: string
+}
+
+export function InfoDataWrapper({ network }: Props) {
   const { data, isLoading } = useQuery({
-    queryKey: ["gas", "latest"],
+    queryKey: ["gas", "latest", network],
     refetchInterval: 12 * 1000,
     refetchOnWindowFocus: true,
-    queryFn: () => fetchLatestGas(),
+    queryFn: () => fetchLatestGas(network),
   });
 
   if (isLoading)
@@ -26,5 +30,5 @@ export function InfoDataWrapper() {
 
   if (!data) return null;
 
-  return <Info data={data} />;
+  return <Info data={data} network={network} />;
 }

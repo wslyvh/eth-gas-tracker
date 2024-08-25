@@ -5,8 +5,6 @@ const ALLOWED_ORIGINS = ['http://localhost:3000', 'https://www.ethgastracker.com
 
 export async function middleware(req: NextRequest) {
   const apiKey = getParameterByName("apiKey", req.nextUrl.href);
-  console.log("Middleware Request", req.nextUrl.href, "|", "origin", req.nextUrl.origin);
-
   if (ALLOWED_ORIGINS.includes(req.nextUrl.origin)) {
     return NextResponse.next();
   }

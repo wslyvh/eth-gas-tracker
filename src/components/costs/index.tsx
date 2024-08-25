@@ -4,12 +4,16 @@ import { fetchLatestGas } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
 import { TransactionCosts } from "./component";
 
-export function TransactionCostsDataWrapper() {
+interface Props {
+  network?: string
+}
+
+export function TransactionCostsDataWrapper({ network }: Props) {
   const { data, isLoading } = useQuery({
-    queryKey: ["gas", "latest"],
+    queryKey: ["gas", "latest", network],
     refetchInterval: 12 * 1000,
     refetchOnWindowFocus: true,
-    queryFn: () => fetchLatestGas(),
+    queryFn: () => fetchLatestGas(network),
   });
 
   if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>

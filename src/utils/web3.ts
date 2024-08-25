@@ -2,6 +2,8 @@ import { Chain, createPublicClient, http } from "viem"
 import { arbitrum, mainnet, optimism } from "viem/chains"
 import { CONFIG, NETWORKS } from "./config"
 
+export const NETWORKS_CHAIN = ["mainnet", "arbitrum", "base", "optimism"]
+
 export function CreatePublicClient(network: NETWORKS = "mainnet") {
     let chain: Chain = mainnet
     let url = `https://mainnet.infura.io/v3/${CONFIG.INFURA_API_KEY}`

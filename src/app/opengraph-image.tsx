@@ -13,7 +13,7 @@ export const contentType = "image/png";
 
 export default async function Image() {
   const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
-  const data = await fetchLatestGas(url);
+  const data = await fetchLatestGas('', url);
 
   if (!data) return null;
 

@@ -21,8 +21,7 @@ import { AveragesDataWrapper } from "@/components/average";
 import { InfoDataWrapper } from "@/components/info";
 
 export async function generateMetadata() {
-  const url =
-    process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL;
+  const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL;
   const frameTags = await getFrameMetadata(`${url}/api`);
 
   return {

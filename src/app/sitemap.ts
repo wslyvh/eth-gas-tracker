@@ -1,9 +1,11 @@
 import { MetadataRoute } from "next";
 import { SITE_URL } from "@/utils/site";
 import { GetPosts } from "@/services/content";
+import { NETWORKS_CHAIN } from "@/utils/web3";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = GetPosts()
+
   const pages = [
     {
       url: SITE_URL,
@@ -34,6 +36,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: "2024-08-24T10:00:00.000Z",
       changeFrequency: "monthly",
       priority: 0.5,
+    })),
+    ...NETWORKS_CHAIN.map((network) => ({
+      url: `${SITE_URL}/network/${network}`,
+      lastModified: new Date(),
+      changeFrequency: "always",
+      priority: 0.9,
     })),
   ] as MetadataRoute.Sitemap;
 

@@ -13,7 +13,7 @@ const app = new Frog({
 
 app.frame('/', async (context) => {
   const url = process.env.NODE_ENV === 'development' ? "http://localhost:3000" : SITE_URL;
-  const data = await fetchLatestGas(url);
+  const data = await fetchLatestGas('', url);
 
   return context.res({
     headers:{

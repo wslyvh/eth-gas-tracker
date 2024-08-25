@@ -6,7 +6,7 @@ export const revalidate = 12;
 
 export async function GET(req: NextRequest, { params }: { params: { block: string, network: string } }) {
   const blockNr = parseInt(params.block) || 0
-  console.log(`GET /${blockNr}/history/${params.network}`, );
+  console.log(`GET /${blockNr}/${params.network}`);
 
   const data = await getGasData(params.network as any, blockNr);
   if (data) {

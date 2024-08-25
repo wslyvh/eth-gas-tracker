@@ -5,11 +5,13 @@ import dayjs from "dayjs";
 
 interface Props {
   data: GasInfo;
+  network?: string;
 }
 
-export function Info({ data }: Props) {
+export function Info({ data, network }: Props) {
+  const siteTitle = network ? `${network.charAt(0).toUpperCase() + network.slice(1)} Gas Tracker` : SITE_NAME;
   if (document) {
-    document.title = `${toRoundedGwei(data.baseFee)} Gwei | ${SITE_NAME}`;
+    document.title = `${toRoundedGwei(data.baseFee)} Gwei | ${siteTitle}`;
   }
 
   return (

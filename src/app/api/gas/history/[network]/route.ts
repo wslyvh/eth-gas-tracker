@@ -5,7 +5,7 @@ export const dynamic = 'force-static'; // force-dynamic to enable searchParams
 export const revalidate = 12;
 
 export async function GET(req: NextRequest, { params }: { params: { network: string } }) {
-  console.log("GET /history", params.network);
+  console.log(`GET /history/${params.network}`);
 
   try {
     const history = await getHistory(params.network as any, 50);

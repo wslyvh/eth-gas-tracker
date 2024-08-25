@@ -5,7 +5,7 @@ export const dynamic = 'force-static'; // force-dynamic to enable searchParams
 export const revalidate = 3600;
 
 export async function GET(req: NextRequest, { params }: { params: { network: string } }) {
-  console.log("GET /average", params.network);
+  console.log(`GET /average/${params.network}`);
 
   try {
     const data = await getAverage(params.network as any);

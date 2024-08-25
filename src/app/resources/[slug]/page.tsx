@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Params) {
   }
 }
 
-export default async function BlogPost({ params }: Params) {
+export default async function Page({ params }: Params) {
   const posts = GetPosts()
   const post = posts.find((i: Post) => i.slug === params.slug)
 

@@ -1,10 +1,18 @@
+"use client";
+
+import { NETWORKS_CHAIN } from "@/utils/web3";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Props {
   className?: string;
 }
 
 export function Navbar(props: Props) {
+  const pathname = usePathname()
+  const network = pathname.split('/').pop() || 'Ethereum'
+  const networkName = network.charAt(0).toUpperCase() + network.slice(1)
+
   let className =
     "flex flex-col justify-between bg-base-300 rounded-2xl items-center p-4 md:p-8 md:flex-row";
   if (props.className) className += ` ${props.className}`;
@@ -39,12 +47,22 @@ export function Navbar(props: Props) {
             <li>
               <Link href="/resources">Resources</Link>
             </li>
+            <li className="menu-title">
+              <div className="divider my-0"></div>
+            </li>
+            {NETWORKS_CHAIN.map((network) => (
+              <li key={network}>
+                <Link href={`/network/${network}`}>
+                  {network.charAt(0).toUpperCase() + network.slice(1)}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
       <div className="navbar-center">
         <Link href="/">
-          <h1 className="sm:text-xl">⛽ Ethereum Gas Tracker</h1>
+          <h1 className="sm:text-xl">⛽ {networkName} Gas Tracker</h1>
         </Link>
       </div>
       <div className="navbar-end">

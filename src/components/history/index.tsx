@@ -4,12 +4,16 @@ import { fetchGasHistory } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
 import { History } from "./component";
 
-export function HistoryDataWrapper() {
+interface Props {
+  network?: string
+}
+
+export function HistoryDataWrapper({ network }: Props) {
   const { data, isLoading } = useQuery({
-    queryKey: ["gas", "history"],
+    queryKey: ["gas", "history", network],
     refetchInterval: 12 * 1000,
     refetchOnWindowFocus: true,
-    queryFn: () => fetchGasHistory(),
+    queryFn: () => fetchGasHistory(network),
   });
 
   if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>

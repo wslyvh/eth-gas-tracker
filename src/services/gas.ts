@@ -48,15 +48,15 @@ export interface DataWrapper<T> {
   lastUpdate: number;
 }
 
-export async function fetchLatestGas(baseUri: string = ''): Promise<GasInfo> {
-  console.log("Fetching latest gas..", baseUri);
-  const response = await fetch(`${baseUri}/api/gas/latest`, { next: { revalidate: 12 } });
+export async function fetchLatestGas(network: string = '', baseUri: string = ''): Promise<GasInfo> {
+  const uri = network ? `${baseUri}/api/gas/latest/${network}` : `${baseUri}/api/gas/latest`;
+  const response = await fetch(uri, { next: { revalidate: 12 } });
   return response.json().then((res) => res.data);
 }
 
-export async function fetchGasHistory(baseUri: string = ''): Promise<DataWrapper<GasFee[]>> {
-  console.log("Fetching gas history..", baseUri);
-  const response = await fetch(`${baseUri}/api/gas/history`, { next: { revalidate: 12 } });
+export async function fetchGasHistory(network: string = '', baseUri: string = ''): Promise<DataWrapper<GasFee[]>> {
+  const uri = network ? `${baseUri}/api/gas/history/${network}` : `${baseUri}/api/gas/history`;
+  const response = await fetch(uri, { next: { revalidate: 12 } });
   return response.json().then((res) => {
     return {
       data: res.data.blocks,
@@ -65,9 +65,9 @@ export async function fetchGasHistory(baseUri: string = ''): Promise<DataWrapper
   });
 }
 
-export async function fetchGasAverages(baseUri: string = ''): Promise<DataWrapper<GasFee[]>> {
-  console.log("Fetching gas averages..", baseUri);
-  const response = await fetch(`${baseUri}/api/gas/average`, { next: { revalidate: 3600 } });
+export async function fetchGasAverages(network: string = '', baseUri: string = ''): Promise<DataWrapper<GasFee[]>> {
+  const uri = network ? `${baseUri}/api/gas/average/${network}` : `${baseUri}/api/gas/average`;
+  const response = await fetch(uri, { next: { revalidate: 3600 } });
   return response.json().then((res) => { 
     return {
       data: res.data.data,
