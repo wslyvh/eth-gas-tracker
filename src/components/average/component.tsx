@@ -45,7 +45,7 @@ export function Averages(props: Props) {
   return (
     <div className="flex flex-col bg-white rounded-xl w-full max-w-[1200px] min-h-[420px] aspect-[1.91/1] p-4 md:p-12">
       <div className="flex justify-between">
-        <h2 className="text-3xl">Weekly Heatmap <span className='text-xs'>Updated {dayjs(props.lastUpdate).format("HH:mm:ss")} UTC</span></h2>
+        <h2 className="text-3xl">Weekly Heatmap in UTC<span className='text-xs'>Updated {dayjs(props.lastUpdate).format("HH:mm:ss")} UTC</span></h2>
       </div>
 
       <div className="relative grow ">
