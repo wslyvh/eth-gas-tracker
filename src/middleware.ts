@@ -4,6 +4,7 @@ const API_KEYS = process.env.API_KEYS?.split(",") ?? [];
 const ALLOWED_ORIGINS = ['http://localhost:3000', 'https://www.ethgastracker.com', 'https://www.useweb3.xyz'];
 
 export async function middleware(req: NextRequest) {
+  console.log('Running middleware', req.nextUrl.origin);
   const apiKey = getParameterByName("apiKey", req.nextUrl.href);
   if (ALLOWED_ORIGINS.includes(req.nextUrl.origin)) {
     return NextResponse.next();
