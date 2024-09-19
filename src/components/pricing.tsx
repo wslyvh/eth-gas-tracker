@@ -24,16 +24,20 @@ export function Pricing(props: Props) {
             <li>Unlimited requests (fair use)</li>
             <li>All networks</li>
           </ul>
+          
         </div>
         <div className="flex flex-col text-center  w-full md:w-48 mt-4 md:mt-0 ">
-          {/* <span className="text-4xl">€{API_PRICING}.00</span>
-          <span className="text-slate-400">billed monthly</span> */}
+          <span className="text-4xl">€{API_PRICING}.00</span>
+          <span className="text-slate-400">billed monthly</span>
           <a
-            className="btn btn-primary btn-sm w-full" // mt-4
+            className="btn btn-primary btn-sm w-full mt-4"
+            target="_blank"
+            rel="noreferrer"
             href={API_PAYMENT_URL}
           >
-            Contact{/* Get Started */}
+            Get Started
           </a>
+          <p className='text-xs pt-4 m-0 p-0'>*API key will be sent within 24 hrs after confirmation.</p>
         </div>
       </div>
     </>
