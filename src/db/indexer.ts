@@ -46,7 +46,10 @@ async function index(network: string = "mainnet") {
   while (blockNr > runUntil) {
     console.log(`[${network}] # ${blockNr}`);
 
-    const block = await client.getBlock({ blockNumber: blockNr, includeTransactions: true });
+    const block = await client.getBlock({
+      blockNumber: blockNr,
+      includeTransactions: true,
+    });
     const fees = block.transactions
       .map((i: any) => toRoundedGwei(i.maxFeePerGas))
       .filter((i: any) => i > 0);
@@ -85,7 +88,7 @@ async function index(network: string = "mainnet") {
 
 export function CreatePublicClient(network: string = "mainnet") {
   let chain: Chain = mainnet;
-  let url = `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`;
+  let url = `https://mainnet.infura.io/v3/${process.env.INFURA_INDEXER_API_KEY}`;
 
   if (network === "arbitrum") {
     chain = arbitrum;
