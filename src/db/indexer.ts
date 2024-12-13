@@ -33,53 +33,53 @@ async function index(network: string = "mainnet") {
   const db = await dbClient(network as any);
 
   const currentBlock = await client.getBlockNumber();
-  const latestBlock = await getLatestBlock(network as any);
-
-  let runUntil = currentBlock - BigInt(20);
-  if (network === "mainnet" && latestBlock?.blockNr) {
-    runUntil = BigInt(latestBlock.blockNr as number);
-  }
+  const runUntil = currentBlock - BigInt(10);
   console.log(`[${network}] Process blocks # ${runUntil} / ${currentBlock}`);
 
   let blockNr = currentBlock;
   let records = [];
   while (blockNr > runUntil) {
-    console.log(`[${network}] # ${blockNr}`);
-
-    const block = await client.getBlock({
-      blockNumber: blockNr,
-      includeTransactions: true,
-    });
-    const fees = block.transactions
-      .map((i: any) => toRoundedGwei(i.maxFeePerGas))
-      .filter((i: any) => i > 0);
-    const ethPrice = await getEthPrice();
-
     try {
-      const result = await db.execute({
-        sql: "INSERT INTO blocks VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        args: [
-          Number(block.number),
-          toRoundedGwei(block.baseFeePerGas),
-          block.transactions.length,
-          getMin(fees),
-          getMax(fees),
-          getAverage(fees),
-          getMedian(fees),
-          ethPrice,
-          Number(block.gasLimit),
-          Number(block.gasUsed),
-          new Date(Number(block.timestamp) * 1000).toISOString(),
-          Number(block.timestamp),
-        ],
-      });
-      records.push(result);
-    } catch (e) {
-      console.log(`[${network}] Unable to save block # ${blockNr}`);
-      console.error(e);
-    }
+      console.log(`[${network}] # ${blockNr}`);
 
-    blockNr--;
+      const block = await client.getBlock({
+        blockNumber: blockNr,
+        includeTransactions: true,
+      });
+      const fees = block.transactions
+        .map((i: any) => toRoundedGwei(i.maxFeePerGas))
+        .filter((i: any) => i > 0);
+      const ethPrice = await getEthPrice();
+
+      try {
+        const result = await db.execute({
+          sql: "INSERT INTO blocks VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          args: [
+            Number(block.number),
+            toRoundedGwei(block.baseFeePerGas),
+            block.transactions.length,
+            getMin(fees),
+            getMax(fees),
+            getAverage(fees),
+            getMedian(fees),
+            ethPrice,
+            Number(block.gasLimit),
+            Number(block.gasUsed),
+            new Date(Number(block.timestamp) * 1000).toISOString(),
+            Number(block.timestamp),
+          ],
+        });
+        records.push(result);
+      } catch (e) {
+        console.log(`[${network}] Unable to save block # ${blockNr}`);
+        console.error(e);
+      }
+    } catch (e) {
+      console.log(`[${network}] Failed to fetch block # ${blockNr}`);
+      console.error(e);
+    } finally {
+      blockNr--;
+    }
   }
 
   console.log(`[${network}] Completed. ${records.length} records processed`);
