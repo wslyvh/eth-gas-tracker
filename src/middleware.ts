@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const API_KEYS = process.env.API_KEYS?.split(",") ?? [];
-const ALLOWED_ORIGINS = ['http://localhost:3000', 'https://www.ethgastracker.com', 'https://www.useweb3.xyz'];
+const ALLOWED_ORIGINS = [
+  "http://localhost:3000",
+  "https://www.ethgastracker.com",
+  "https://www.useweb3.xyz",
+];
 
 export async function middleware(req: NextRequest) {
-  console.log('Running middleware', req.nextUrl.origin);
+  console.log("Running middleware", req.nextUrl.origin);
   const apiKey = getParameterByName("apiKey", req.nextUrl.href);
   if (ALLOWED_ORIGINS.includes(req.nextUrl.origin)) {
     return NextResponse.next();
@@ -15,15 +19,19 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!API_KEYS.includes(apiKey)) {
-    console.log('Invalid API Key', apiKey);
+    console.log("Invalid API Key", apiKey);
     return NextResponse.json("Invalid API Key", { status: 401 });
+  }
+
+  if (apiKey) {
+    console.log("[API Key] Valid API Key", apiKey);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/api/gas/:path*", "/api/blobs/:path*"],
+  matcher: ["api/gas", "/api/gas/:path*", "/api/blobs/:path*"],
 };
 
 function getParameterByName(name: string, url: string) {
