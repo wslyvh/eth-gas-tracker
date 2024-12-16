@@ -31,7 +31,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["api/gas", "/api/gas/:path*", "/api/blobs/:path*"],
+  matcher: ["/api/gas", "/api/gas/:path*", "/api/blobs/:path*"],
 };
 
 function getParameterByName(name: string, url: string) {
