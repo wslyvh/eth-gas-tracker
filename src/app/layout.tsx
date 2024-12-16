@@ -1,4 +1,5 @@
 import DataProvider from "./providers/DataProvider";
+import { Analytics } from "@vercel/analytics/react";
 import PlausibleProvider from "next-plausible";
 import { SITE_DOMAIN } from "@/utils/site";
 import { PropsWithChildren } from "react";
@@ -12,6 +13,7 @@ export default function RootLayout(props: PropsWithChildren) {
       <head>
         <PlausibleProvider domain={SITE_DOMAIN} />
       </head>
+      <Analytics />
       <body className="w-screen h-screen h-full p-2 sm:p-8 pt-4">
         <main className="flex flex-col container mx-auto items-center gap-4">
           <Navbar />
