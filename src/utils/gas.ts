@@ -6,7 +6,6 @@ import { getEthPrice } from "@/services/ether";
 
 export async function getGasData(network: NETWORKS, blockNr?: number) {
   const client = CreatePublicClient(network);
-  const mainnet = CreatePublicClient("mainnet");
 
   const blockParams: GetBlockParameters = blockNr
     ? { blockNumber: BigInt(blockNr) }

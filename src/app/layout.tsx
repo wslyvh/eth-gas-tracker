@@ -1,19 +1,21 @@
+import { Suspense, lazy } from "react";
 import DataProvider from "./providers/DataProvider";
-import { Analytics } from "@vercel/analytics/react";
-import PlausibleProvider from "next-plausible";
 import { SITE_DOMAIN } from "@/utils/site";
 import { PropsWithChildren } from "react";
 import { Navbar } from "@/components/navbar";
 import Link from "next/link";
 import "@/assets/globals.css";
 
+const PlausibleAnalytics = lazy(() => import("next-plausible"));
+
 export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en" className="bg-neutral-100">
       <head>
-        <PlausibleProvider domain={SITE_DOMAIN} />
+        <Suspense fallback={null}>
+          <PlausibleAnalytics domain={SITE_DOMAIN} />
+        </Suspense>
       </head>
-      <Analytics />
       <body className="w-screen h-screen h-full p-2 sm:p-8 pt-4">
         <main className="flex flex-col container mx-auto items-center gap-4">
           <Navbar />
