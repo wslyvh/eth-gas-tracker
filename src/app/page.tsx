@@ -1,4 +1,8 @@
-import { fetchLatestGas } from "@/services/gas";
+import {
+  fetchGasAverages,
+  fetchGasHistory,
+  fetchLatestGas,
+} from "@/services/gas";
 import {
   HydrationBoundary,
   QueryClient,
@@ -10,6 +14,7 @@ import {
   SITE_DESCRIPTION,
   SOCIAL_TWITTER,
 } from "@/utils/site";
+import { getFrameMetadata } from "frog/next";
 import { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/skeleton";
 
@@ -19,13 +24,27 @@ const InfoDataWrapper = lazy(() =>
   }))
 );
 
+const HistoryDataWrapper = lazy(() =>
+  import("@/components/history").then((mod) => ({
+    default: mod.HistoryDataWrapper,
+  }))
+);
 const TransactionCostsDataWrapper = lazy(() =>
   import("@/components/costs").then((mod) => ({
     default: mod.TransactionCostsDataWrapper,
   }))
 );
+const AveragesDataWrapper = lazy(() =>
+  import("@/components/average").then((mod) => ({
+    default: mod.AveragesDataWrapper,
+  }))
+);
 
 export async function generateMetadata() {
+  const url =
+    process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL;
+  const frameTags = await getFrameMetadata(`${url}/api`);
+
   return {
     applicationName: SITE_NAME,
     title: SITE_NAME,
@@ -46,6 +65,7 @@ export async function generateMetadata() {
       description: SITE_DESCRIPTION,
       images: "/opengraph-image",
     },
+    other: frameTags,
   };
 }
 
@@ -57,6 +77,16 @@ export default async function Home() {
     queryFn: () => fetchLatestGas(),
   });
 
+  await queryClient.prefetchQuery({
+    queryKey: ["gas", "history"],
+    queryFn: () => fetchGasHistory(),
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["gas", "average"],
+    queryFn: () => fetchGasAverages(),
+  });
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Suspense fallback={<Skeleton />}>
@@ -64,7 +94,15 @@ export default async function Home() {
       </Suspense>
 
       <Suspense fallback={<Skeleton />}>
+        <HistoryDataWrapper />
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
         <TransactionCostsDataWrapper />
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
+        <AveragesDataWrapper />
       </Suspense>
     </HydrationBoundary>
   );
