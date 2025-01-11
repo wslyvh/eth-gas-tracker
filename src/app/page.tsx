@@ -15,9 +15,14 @@ import {
   SOCIAL_TWITTER,
 } from "@/utils/site";
 import { getFrameMetadata } from "frog/next";
-import { InfoDataWrapper } from "@/components/info";
 import { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/skeleton";
+
+const InfoDataWrapper = lazy(() =>
+  import("@/components/info").then((mod) => ({
+    default: mod.InfoDataWrapper,
+  }))
+);
 
 const HistoryDataWrapper = lazy(() =>
   import("@/components/history").then((mod) => ({
@@ -84,7 +89,9 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <InfoDataWrapper />
+      <Suspense fallback={<Skeleton />}>
+        <InfoDataWrapper />
+      </Suspense>
 
       <Suspense fallback={<Skeleton />}>
         <HistoryDataWrapper />
