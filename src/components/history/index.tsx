@@ -2,12 +2,20 @@
 
 import { fetchGasHistory } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
-import { History } from "./component";
 import { Skeleton } from "../skeleton";
+import dynamic from "next/dynamic";
 
 interface Props {
   network?: string;
 }
+
+const History = dynamic(
+  () =>
+    import("./component").then((mod) => ({
+      default: mod.History,
+    })),
+  { ssr: false }
+);
 
 export function HistoryDataWrapper({ network }: Props) {
   const { data, isLoading } = useQuery({
