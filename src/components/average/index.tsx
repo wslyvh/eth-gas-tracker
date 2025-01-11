@@ -3,9 +3,10 @@
 import { fetchGasAverages } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
 import { Averages } from "./component";
+import { Skeleton } from "../skeleton";
 
 interface Props {
-  network?: string
+  network?: string;
 }
 
 export function AveragesDataWrapper({ network }: Props) {
@@ -15,9 +16,9 @@ export function AveragesDataWrapper({ network }: Props) {
     queryFn: () => fetchGasAverages(network),
   });
 
-  if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>
+  if (isLoading) return <Skeleton />;
 
   if (!data) return null;
 
-  return <Averages fees={data.data} lastUpdate={data.lastUpdate}/>
+  return <Averages fees={data.data} lastUpdate={data.lastUpdate} />;
 }

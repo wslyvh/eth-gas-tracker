@@ -3,9 +3,10 @@
 import { fetchGasHistory } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
 import { History } from "./component";
+import { Skeleton } from "../skeleton";
 
 interface Props {
-  network?: string
+  network?: string;
 }
 
 export function HistoryDataWrapper({ network }: Props) {
@@ -16,9 +17,9 @@ export function HistoryDataWrapper({ network }: Props) {
     queryFn: () => fetchGasHistory(network),
   });
 
-  if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>
+  if (isLoading) return <Skeleton />;
 
   if (!data) return null;
 
-  return <History data={data.data} lastUpdate={data.lastUpdate} />
+  return <History data={data.data} lastUpdate={data.lastUpdate} />;
 }

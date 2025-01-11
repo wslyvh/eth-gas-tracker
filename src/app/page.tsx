@@ -8,20 +8,36 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-import { HistoryDataWrapper } from "@/components/history";
 import {
   SITE_NAME,
   SITE_URL,
   SITE_DESCRIPTION,
   SOCIAL_TWITTER,
 } from "@/utils/site";
-import { TransactionCostsDataWrapper } from "@/components/costs";
 import { getFrameMetadata } from "frog/next";
-import { AveragesDataWrapper } from "@/components/average";
 import { InfoDataWrapper } from "@/components/info";
+import { Suspense, lazy } from "react";
+import { Skeleton } from "@/components/skeleton";
+
+const HistoryDataWrapper = lazy(() =>
+  import("@/components/history").then((mod) => ({
+    default: mod.HistoryDataWrapper,
+  }))
+);
+const TransactionCostsDataWrapper = lazy(() =>
+  import("@/components/costs").then((mod) => ({
+    default: mod.TransactionCostsDataWrapper,
+  }))
+);
+const AveragesDataWrapper = lazy(() =>
+  import("@/components/average").then((mod) => ({
+    default: mod.AveragesDataWrapper,
+  }))
+);
 
 export async function generateMetadata() {
-  const url = process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL;
+  const url =
+    process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL;
   const frameTags = await getFrameMetadata(`${url}/api`);
 
   return {
@@ -69,9 +85,18 @@ export default async function Home() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <InfoDataWrapper />
-      <HistoryDataWrapper />
-      <TransactionCostsDataWrapper />
-      <AveragesDataWrapper />
+
+      <Suspense fallback={<Skeleton />}>
+        <HistoryDataWrapper />
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
+        <TransactionCostsDataWrapper />
+      </Suspense>
+
+      <Suspense fallback={<Skeleton />}>
+        <AveragesDataWrapper />
+      </Suspense>
     </HydrationBoundary>
   );
 }

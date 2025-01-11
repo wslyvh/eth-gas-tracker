@@ -3,9 +3,10 @@
 import { fetchLatestGas } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
 import { TransactionCosts } from "./component";
+import { Skeleton } from "../skeleton";
 
 interface Props {
-  network?: string
+  network?: string;
 }
 
 export function TransactionCostsDataWrapper({ network }: Props) {
@@ -16,9 +17,9 @@ export function TransactionCostsDataWrapper({ network }: Props) {
     queryFn: () => fetchLatestGas(network),
   });
 
-  if (isLoading) return <div className="skeleton rounded-xl w-full max-w-[1200px] aspect-[1.91/1]"></div>
+  if (isLoading) return <Skeleton />;
 
   if (!data) return null;
 
-  return <TransactionCosts data={data} />
+  return <TransactionCosts data={data} />;
 }
