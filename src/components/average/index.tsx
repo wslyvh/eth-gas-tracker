@@ -2,20 +2,12 @@
 
 import { fetchGasAverages } from "@/services/gas";
 import { useQuery } from "@tanstack/react-query";
+import { Averages } from "./component";
 import { Skeleton } from "../skeleton";
-import dynamic from "next/dynamic";
 
 interface Props {
   network?: string;
 }
-
-const Averages = dynamic(
-  () =>
-    import("./component").then((mod) => ({
-      default: mod.Averages,
-    })),
-  { ssr: false }
-);
 
 export function AveragesDataWrapper({ network }: Props) {
   const { data, isLoading } = useQuery({
