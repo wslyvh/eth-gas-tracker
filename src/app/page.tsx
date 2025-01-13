@@ -14,7 +14,6 @@ import {
   SITE_DESCRIPTION,
   SOCIAL_TWITTER,
 } from "@/utils/site";
-import { getFrameMetadata } from "frog/next";
 import { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/skeleton";
 
@@ -41,9 +40,7 @@ const AveragesDataWrapper = lazy(() =>
 );
 
 export async function generateMetadata() {
-  const url =
-    process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL;
-  const frameTags = await getFrameMetadata(`${url}/api`);
+  const timestamp = new Date().valueOf();
 
   return {
     applicationName: SITE_NAME,
@@ -56,16 +53,15 @@ export async function generateMetadata() {
       siteName: SITE_NAME,
       description: SITE_DESCRIPTION,
       url: SITE_URL,
-      images: "/opengraph-image",
+      images: `/opengraph-image?ts=${timestamp}`,
     },
     twitter: {
       card: "summary_large_image",
       site: SOCIAL_TWITTER,
       title: SITE_NAME,
       description: SITE_DESCRIPTION,
-      images: "/opengraph-image",
+      images: `/opengraph-image?ts=${timestamp}`,
     },
-    other: frameTags,
   };
 }
 
