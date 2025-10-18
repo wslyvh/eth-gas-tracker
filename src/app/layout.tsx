@@ -1,12 +1,17 @@
 import { Suspense, lazy } from "react";
 import DataProvider from "./providers/DataProvider";
-import { SITE_DOMAIN } from "@/utils/site";
+import { SITE_DOMAIN, SITE_URL } from "@/utils/site";
 import { PropsWithChildren } from "react";
 import { Navbar } from "@/components/navbar";
 import Link from "next/link";
 import "@/assets/globals.css";
+import { Metadata } from "next";
 
 const PlausibleAnalytics = lazy(() => import("next-plausible"));
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+};
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
