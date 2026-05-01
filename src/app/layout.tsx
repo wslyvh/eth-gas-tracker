@@ -24,6 +24,33 @@ export default function RootLayout(props: PropsWithChildren) {
       <body className="w-screen h-screen h-full p-2 sm:p-8 pt-4">
         <main className="flex flex-col container mx-auto items-center gap-4">
           <Navbar />
+          <div className="alert rounded-xl w-full max-w-[1200px] bg-warning/15 border border-warning/40 text-warning-content px-4 py-3 sm:px-6">
+            <span className="text-sm sm:text-base">
+              <strong className="font-semibold">Notice:</strong> Ethereum Gas
+              Tracker will be deprecated as our priorities have shifted to a new
+              project.{" "}
+              <Link
+                href="https://www.paperweight.email/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline"
+              >
+                Paperweight
+              </Link>{" "}
+              scans your inbox to map your digital footprint and help you take
+              back control. If you are interested in taking over, please feel
+              free to{" "}
+              <Link
+                href="https://t.me/wslyvh"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline"
+              >
+                reach out
+              </Link>
+              .
+            </span>
+          </div>
 
           <DataProvider>{props.children}</DataProvider>
 
